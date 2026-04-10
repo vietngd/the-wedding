@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+// CHÚ Ý: Thay đổi đường dẫn này thành link Vercel thực tế của bạn
+// Ví dụ: 'https://my-wedding-app.vercel.app' hoặc 'https://cinelove.me' nếu đã trỏ domain
+const DOMAIN = process.env.NEXT_PUBLIC_BASE_URL || "https://the-wedding-nine.vercel.app/"; 
+
 export const metadata: Metadata = {
+  metadataBase: new URL(DOMAIN),
   title: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
   description:
     "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
@@ -11,8 +16,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
     description: "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
-    url: "/",
+    url: DOMAIN,
     siteName: "Thiệp Cưới",
+    images: [
+      {
+        url: `${DOMAIN}/images/wedding/wedding-1.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
+      },
+    ],
     locale: "vi_VN",
     type: "website",
   },
@@ -20,6 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
     description: "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
+    images: [`${DOMAIN}/images/wedding/wedding-1.jpg`],
   },
 };
 
