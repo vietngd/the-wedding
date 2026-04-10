@@ -746,6 +746,20 @@ function FloatingMusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    // Attempt autoplay immediately upon component mount
+    if (audioRef.current && !isPlaying) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((err) => {
+            console.warn("Auto-play was prevented by the browser. Waiting for user interaction...", err);
+          });
+      }
+    }
+
     const handleFirstInteraction = () => {
       if (audioRef.current && !isPlaying) {
         const playPromise = audioRef.current.play();
@@ -761,14 +775,17 @@ function FloatingMusicPlayer() {
       }
       document.removeEventListener("click", handleFirstInteraction);
       document.removeEventListener("touchstart", handleFirstInteraction);
+      document.removeEventListener("scroll", handleFirstInteraction);
     };
 
     document.addEventListener("click", handleFirstInteraction);
     document.addEventListener("touchstart", handleFirstInteraction);
+    document.addEventListener("scroll", handleFirstInteraction); // Add scroll as an extra fallback just in case
 
     return () => {
       document.removeEventListener("click", handleFirstInteraction);
       document.removeEventListener("touchstart", handleFirstInteraction);
+      document.removeEventListener("scroll", handleFirstInteraction);
     };
   }, [isPlaying]);
 
@@ -800,7 +817,7 @@ function FloatingMusicPlayer() {
       className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-[0_4px_16px_rgba(212,165,165,0.4)] cursor-pointer border-2 border-[#d4a5a5] transition-transform duration-300 ${isPlaying ? "animate-[spin_4s_linear_infinite]" : ""
         }`}
     >
-      <audio ref={audioRef} src="/audio/leduong.mp3" loop />
+      <audio ref={audioRef} src="/audio/leduong.mp3" autoPlay loop />
       <span className="text-xl leading-none">🎵</span>
       {/* Red dot indicator if paused */}
       {!isPlaying && (
