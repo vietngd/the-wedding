@@ -3,7 +3,7 @@ import "./globals.css";
 
 // CHÚ Ý: Thay đổi đường dẫn này thành link Vercel thực tế của bạn
 // Ví dụ: 'https://my-wedding-app.vercel.app' hoặc 'https://cinelove.me' nếu đã trỏ domain
-const DOMAIN = process.env.NEXT_PUBLIC_BASE_URL || "https://the-wedding-nine.vercel.app/"; 
+const DOMAIN = process.env.NEXT_PUBLIC_BASE_URL || "https://the-wedding-nine.vercel.app"; // Lưu ý: Không để dấu gạch chéo (/) ở cuối
 
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN),
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "Thiệp Cưới",
     images: [
       {
-        url: `${DOMAIN}/images/wedding/wedding-1.jpg`,
+        url: "/images/wedding/wedding-1.jpg", 
         width: 1200,
         height: 630,
         alt: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
     description: "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
-    images: [`${DOMAIN}/images/wedding/wedding-1.jpg`],
+    images: ["/images/wedding/wedding-1.jpg"],
   },
 };
 
