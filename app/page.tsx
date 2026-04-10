@@ -14,7 +14,6 @@ const IMAGES = {
   story6: "/images/wedding/wedding-16.jpg",
   story7: "/images/wedding/wedding-15.jpg",
   gallery: [
-    "/images/wedding/wedding-2.jpg",
     "/images/wedding/wedding-4.jpg",
     "/images/wedding/wedding-9.jpg",
     "/images/wedding/wedding-10.jpg",
@@ -24,6 +23,7 @@ const IMAGES = {
     "/images/wedding/wedding-14.jpg",
     "/images/wedding/wedding-15.jpg",
     "/images/wedding/wedding-16.jpg",
+    "/images/wedding/wedding-2.jpg",
   ],
 };
 
@@ -31,12 +31,28 @@ const IMAGES = {
 const WEDDING = {
   groomName: "Đức Việt",
   brideName: "Thoa Nguyễn",
-  date: "2026-05-09",
-  dateDisplay: "09 . 05 . 2026",
-  timeLeReception: "17:00",
-  timeLeCeremony: "14:00",
-  venue: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
-  venueAddress: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
+  date: "2026-05-10T11:00:00",
+  dateDisplay: "09-10 . 05 . 2026",
+  events: [
+    {
+      id: "dan-trau",
+      title: "Lễ Dẫn Trầu",
+      date: "09 . 05 . 2026",
+      relativeDay: "Thứ Bảy",
+      time: "14:00",
+      venue: "Tư gia",
+      address: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
+    },
+    {
+      id: "dai-le",
+      title: "Lễ Cưới",
+      date: "10 . 05 . 2026",
+      relativeDay: "Chủ Nhật",
+      time: "11:00",
+      venue: "Tư gia",
+      address: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
+    }
+  ]
 };
 
 // ── SVG Icons as components ──
@@ -72,17 +88,17 @@ function MapPinIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function CalendarIcon() {
+function CalendarIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
     </svg>
   );
 }
 
-function ClockIcon() {
+function ClockIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
     </svg>
   );
@@ -96,9 +112,9 @@ function ChevronDown() {
   );
 }
 
-function RingIcon() {
+function RingIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <circle cx="12" cy="14" r="8" /><path d="M9 3l3 4 3-4" /><path d="M12 7v3" />
     </svg>
   );
@@ -297,7 +313,81 @@ function CoupleSection() {
   );
 }
 
-// ── 3. Love Story Timeline ──
+// ── 3. Introduction Section ──
+function IntroductionSection() {
+  return (
+    <section className="wedding-section pb-24 pt-12 relative overflow-hidden" id="introduction">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#f8e8e0] rounded-full filter blur-3xl opacity-50 -z-10 translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#f0d5d5] rounded-full filter blur-3xl opacity-40 -z-10 -translate-x-1/2 translate-y-1/2"></div>
+
+      <div className="animate-on-scroll mb-16">
+        <p className="section-title-script">Chú Rể & Cô Dâu</p>
+        <p className="section-subtitle">Hai mảnh ghép hoàn hảo</p>
+        <div className="ornament-divider mt-4">
+          <span className="line" />
+          <span className="icon">🌿</span>
+          <span className="line" />
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 lg:gap-16 px-4">
+        
+        {/* Chú rể */}
+        <div className="flex flex-col items-center animate-on-scroll slide-left delay-200 group w-full md:w-[45%]">
+          <div className="relative w-64 h-[22rem] md:w-72 md:h-[26rem] rounded-t-full rounded-b-3xl overflow-hidden border-[6px] border-white shadow-[0_15px_40px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:-translate-y-2">
+            <img src="/images/wedding/wedding-10.jpg" alt="Chú rể" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+          
+          <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
+            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2">Chú rể</p>
+            <h3 className="font-serif text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1">Nguyễn Đức Việt</h3>
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <CalendarIcon className="w-4 h-4 text-[#c9956b]" />
+              <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">08 / 10 / 2002</p>
+            </div>
+            <p className="text-[#8a7a72] text-[14px] italic leading-relaxed">
+              "Chàng trai trưởng thành, ấm áp, luôn mang lại niềm vui và là chỗ dựa vững chắc cho gia đình nhỏ."
+            </p>
+          </div>
+        </div>
+
+        {/* Heart separator */}
+        <div className="animate-on-scroll delay-300 flex flex-col items-center justify-center my-4 md:my-0 shrink-0">
+          <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-[#d4a5a5]/80 to-[#d4a5a5]/80 hidden md:block"></div>
+          <div className="w-14 h-14 rounded-full bg-[#f8e8e0] border border-[#d4a5a5]/40 flex items-center justify-center my-4 shadow-[0_0_20px_rgba(212,165,165,0.3)] animate-[pulse_3s_ease-in-out_infinite]">
+            <HeartIcon className="w-6 h-6 text-[#c48b8b]" />
+          </div>
+          <div className="w-[1px] h-20 bg-gradient-to-t from-transparent via-[#d4a5a5]/80 to-[#d4a5a5]/80 hidden md:block"></div>
+        </div>
+
+        {/* Cô dâu */}
+        <div className="flex flex-col items-center animate-on-scroll slide-right delay-400 group w-full md:w-[45%]">
+          <div className="relative w-64 h-[22rem] md:w-72 md:h-[26rem] rounded-t-full rounded-b-3xl overflow-hidden border-[6px] border-white shadow-[0_15px_40px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:-translate-y-2">
+            <img src="/images/wedding/wedding-3.jpg" alt="Cô dâu" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+          
+          <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
+            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2">Cô dâu</p>
+            <h3 className="font-serif text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1">Nguyễn Thị Thoa</h3>
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <CalendarIcon className="w-4 h-4 text-[#c9956b]" />
+              <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">28 / 09 / 2002</p>
+            </div>
+            <p className="text-[#8a7a72] text-[14px] italic leading-relaxed">
+              "Cô gái dịu dàng, rạng rỡ với nụ cười tỏa nắng, mang hạnh phúc và bình yên đến với người thương."
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// ── 4. Love Story Timeline ──
 const LOVE_STORY = [
   {
     date: "Tháng 2, 2023",
@@ -307,23 +397,23 @@ const LOVE_STORY = [
     icon: "coffee",
   },
   {
-    date: "15 Tháng 2, 2020",
+    date: "14 Tháng 2, 2020",
     title: "Lần hẹn hò đầu tiên",
-    text: "Buổi tối đầu tiên bên nhau, đi dạo dọc bờ sông, kể cho nhau nghe những câu chuyện dở dang. Những bước chân chậm rãi mà lòng đầy háo hức.",
+    text: "Buổi tối đầu tiên bên nhau, cùng ngồi trong rạp phim mờ ảo, tay chạm tay khẽ run dưới ánh sáng lập lòe. Những câu chuyện dở dang thì thầm bên tai, xen lẫn tiếng nhạc phim da diết, khiến nhịp tim dồn dập hơn cả cao trào trên màn bạc.",
     image: IMAGES.story6,
     icon: "walk",
   },
   {
     date: "2023 — 2026",
     title: "Hành trình yêu nhau",
-    text: "Cùng nhau đi qua bao mùa nắng mưa, cùng cười, cùng khóc, cùng lớn lên. Mỗi ngày bên nhau là một hành trình kỳ diệu tuyệt vời.",
+    text: "Cùng nắm tay bước qua bao mùa nắng gió, cười vang trong niềm vui, lau nước mắt những lúc yếu lòng, và cùng nhau lớn khôn. Mỗi khoảnh khắc bên em là chương sử kỳ diệu, khắc sâu mãi trong tim anh.",
     image: IMAGES.story3,
     icon: "heart",
   },
   {
     date: "Tháng 9, 2025",
     title: "Lời cầu hôn",
-    text: "Trong ánh nến lung linh và ngàn cánh hoa hồng — \"Em có muốn là người đồng hành cùng anh trọn đời không?\" — \"Em đồng ý!\"",
+    text: "Dưới ánh nến lung linh và biển hoa hồng rực rỡ, anh nắm chặt tay em, giọng run run: \"Em có sẵn sàng đồng hành cùng anh, trọn đời trọn kiếp?\" Nước mắt hạnh phúc lăn dài: \"Em đồng ý, mãi mãi!\"",
     image: IMAGES.story5,
     icon: "ring",
   },
@@ -354,7 +444,7 @@ function LoveStorySection() {
             className={`timeline-item animate-on-scroll ${index % 2 === 0 ? "slide-left" : "slide-right"} delay-${(index + 1) * 200}`}
           >
             <div className="timeline-dot">{getTimelineIcon(item.icon)}</div>
-            <span className="timeline-date">{item.date}</span>
+            <span className="timeline-date !text-base !font-serif">{item.date}</span>
             <h3 className="timeline-title">{item.title}</h3>
             <p className="timeline-text">{item.text}</p>
             <div className="timeline-image">
@@ -367,7 +457,7 @@ function LoveStorySection() {
   );
 }
 
-// ── 4. Event Info Section ──
+// ── 5. Event Info Section ──
 function EventSection() {
   const countdown = useCountdown(WEDDING.date);
 
@@ -378,38 +468,48 @@ function EventSection() {
         <p className="section-subtitle">Trân trọng kính mời</p>
       </div>
 
-      <div className="event-cards">
-        <div className="event-card animate-on-scroll delay-200">
-          <div className="event-card-icon">
-            <CalendarIcon />
-          </div>
-          <p className="event-card-label">Ngày cưới</p>
-          <p className="event-card-value">{WEDDING.dateDisplay}</p>
-          <p className="event-card-detail">Thứ Bảy</p>
-        </div>
+      <div className="flex flex-col gap-8 md:flex-row md:items-stretch justify-center max-w-5xl mx-auto px-4">
+        {WEDDING.events.map((event, idx) => (
+          <div key={event.id} className="bg-white p-6 md:p-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#d4a5a5]/30 w-full md:w-1/2 flex flex-col items-center text-center animate-on-scroll relative" style={{ transitionDelay: `${(idx + 1) * 200}ms` }}>
+            {/* Top accent line */}
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#f0d5d5] via-[#c9a96e] to-[#f0d5d5]"></div>
 
-        <div className="event-card animate-on-scroll delay-300">
-          <div className="event-card-icon">
-            <ClockIcon />
-          </div>
-          <p className="event-card-label">Thời gian</p>
-          <p className="event-card-value">
-            Lễ cưới: {WEDDING.timeLeCeremony}
-          </p>
-          <p className="event-card-detail">Tiệc mừng: {WEDDING.timeLeReception}</p>
-        </div>
+            <div className="w-14 h-14 rounded-full bg-[#f8e8e0] border border-[#d4a5a5]/30 flex flex-col items-center justify-center mt-2 mb-5 text-[#c48b8b]">
+              {idx === 0 ? <HeartIcon className="w-7 h-7" /> : <RingIcon className="w-7 h-7" />}
+            </div>
 
-        <div className="event-card animate-on-scroll delay-400">
-          <div className="event-card-icon pulse-anim">
-            <MapPinIcon />
+            <h3 className="font-serif text-[20px] font-semibold text-[#3a2a22] mb-6">
+              {event.title}
+            </h3>
+
+            <div className="space-y-4 w-full flex-grow">
+              <div className="flex items-center justify-center gap-2.5">
+                <CalendarIcon className="w-5 h-5 text-[#c9956b]" />
+                <p className="font-elegant text-[#3a2a22] font-medium text-[16px]">
+                  {event.relativeDay}, {event.date}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-center gap-2.5">
+                <ClockIcon className="w-5 h-5 text-[#c9956b]" />
+                <p className="font-elegant text-[#3a2a22] font-medium text-[16px]">
+                  {event.time}
+                </p>
+              </div>
+
+
+              <div className="flex flex-col items-center justify-center mb-6">
+                <div className="flex items-center gap-2.5 mb-1.5">
+                  <MapPinIcon className="w-5 h-5 text-[#c9956b] pulse-anim" />
+                  <p className="font-elegant text-[#3a2a22] font-medium text-[16px]">{event.venue}</p>
+                </div>
+                <p className="font-elegant text-[#8a7a72] text-[15px] px-2 pb-8">{event.address}</p>
+              </div>
+            </div>
+
+
           </div>
-          <p className="event-card-label">Địa điểm</p>
-          <p className="event-card-value">{WEDDING.venue}</p>
-          <p className="event-card-detail">{WEDDING.venueAddress}</p>
-          <button className="map-button w-auto h-9" onClick={() => alert("Mở bản đồ (placeholder)")}>
-            <MapPinIcon className="w-4 h-4" /> Xem bản đồ
-          </button>
-        </div>
+        ))}
       </div>
 
       {/* Countdown */}
@@ -443,13 +543,13 @@ function EventSection() {
   );
 }
 
-// ── 5. Message Section ──
+// ── 6. Message Section ──
 const MESSAGE_TEXT =
   "Chúng tôi thật hạnh phúc và vinh dự khi được đón tiếp bạn trong ngày trọng đại. Sự hiện diện của bạn là món quà ý nghĩa nhất mà chúng tôi có thể nhận được. Xin hãy đến và cùng chia sẻ niềm vui này với chúng tôi.";
 
 function MessageSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { displayed, done, start } = useTypewriter(MESSAGE_TEXT, 35, 800);
+  const { displayed, done, start } = useTypewriter(MESSAGE_TEXT, 20, 300);
   const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
@@ -460,7 +560,7 @@ function MessageSection() {
           start();
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.2 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -483,7 +583,7 @@ function MessageSection() {
   );
 }
 
-// ── 6. Gallery Section ──
+// ── 7. Gallery Section ──
 function GallerySection() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -554,7 +654,7 @@ function GallerySection() {
   );
 }
 
-// ── 7. Wishes Section ──
+// ── 8. Wishes Section ──
 function WishesSection() {
   const [name, setName] = useState("");
   const [wish, setWish] = useState("");
@@ -599,7 +699,7 @@ function WishesSection() {
   );
 }
 
-// ── 8. Footer Section ──
+// ── 9. Footer Section ──
 function FooterSection() {
   return (
     <section className="footer-section" id="footer">
@@ -692,9 +792,8 @@ function FloatingMusicPlayer() {
   return (
     <div
       onClick={togglePlay}
-      className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-[0_4px_16px_rgba(212,165,165,0.4)] cursor-pointer border-2 border-[#d4a5a5] transition-transform duration-300 ${
-        isPlaying ? "animate-[spin_4s_linear_infinite]" : ""
-      }`}
+      className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-[0_4px_16px_rgba(212,165,165,0.4)] cursor-pointer border-2 border-[#d4a5a5] transition-transform duration-300 ${isPlaying ? "animate-[spin_4s_linear_infinite]" : ""
+        }`}
     >
       <audio ref={audioRef} src="/audio/leduong.mp3" loop />
       <span className="text-xl leading-none">🎵</span>
@@ -718,6 +817,7 @@ export default function Home() {
       <FloatingPetals />
       <HeroSection />
       <CoupleSection />
+      <IntroductionSection />
       <LoveStorySection />
       <EventSection />
       <MessageSection />

@@ -433,7 +433,7 @@ body {
 
 .section-title-script {
   font-family: var(--font-script);
-  font-size: clamp(32px, 8vw, 48px);
+  font-size: 50px !important;
   text-align: center;
   color: var(--color-primary-dark);
   margin-bottom: 16px;
