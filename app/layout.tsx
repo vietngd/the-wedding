@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://cinelove.me'), // Modify to the real domain if different
   title: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
   description:
     "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
@@ -14,14 +13,6 @@ export const metadata: Metadata = {
     description: "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
     url: "/",
     siteName: "Thiệp Cưới",
-    images: [
-      {
-        url: "/images/wedding/wedding-1.jpg", // Using one of the wedding images
-        width: 1200,
-        height: 630,
-        alt: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
-      },
-    ],
     locale: "vi_VN",
     type: "website",
   },
@@ -29,7 +20,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
     description: "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
-    images: ["/images/wedding/wedding-1.jpg"],
   },
 };
 
