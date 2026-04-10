@@ -32,14 +32,14 @@ const WEDDING = {
   groomName: "Đức Việt",
   brideName: "Thoa Nguyễn",
   date: "2026-05-10T11:00:00",
-  dateDisplay: "09-10 . 05 . 2026",
+  dateDisplay: "09 . 05 . 2026",
   events: [
     {
       id: "dan-trau",
       title: "Lễ Dẫn Trầu",
       date: "09 . 05 . 2026",
       relativeDay: "Thứ Bảy",
-      time: "14:00",
+      time: "09:00",
       venue: "Tư gia",
       address: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
     },
@@ -48,7 +48,7 @@ const WEDDING = {
       title: "Lễ Cưới",
       date: "10 . 05 . 2026",
       relativeDay: "Chủ Nhật",
-      time: "11:00",
+      time: "14:00",
       venue: "Tư gia",
       address: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
     }
@@ -303,11 +303,16 @@ function CoupleSection() {
         <span className="line" />
       </div>
 
-      <div className="animate-on-scroll delay-500">
-        <p className="couple-description">
-          Chúng tôi trân trọng kính mời bạn đến chung vui<br />
-          trong ngày lễ trọng đại của chúng tôi
-        </p>
+      <div className="animate-on-scroll delay-500 px-4">
+        <div className="couple-description text-center leading-loose">
+          Trân trọng kính mời bạn cùng người thương<br />
+          đến chung vui trong ngày lễ trọng đại của chúng tôi<br />
+
+        </div>
+        <div className="couple-description inline-block mt-3 px-8 py-2 mt-5 rounded-full w-[160px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
+          Lúc 17h00 <br />
+          09-05-2026
+        </div>
       </div>
     </section>
   );
@@ -322,7 +327,7 @@ function IntroductionSection() {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#f0d5d5] rounded-full filter blur-3xl opacity-40 -z-10 -translate-x-1/2 translate-y-1/2"></div>
 
       <div className="animate-on-scroll mb-16">
-        <p className="section-title-script">Chú Rể & Cô Dâu</p>
+        <p className="section-title-script">Chú Rể {" "} &  {" "} Cô Dâu</p>
         <p className="section-subtitle">Hai mảnh ghép hoàn hảo</p>
         <div className="ornament-divider mt-4">
           <span className="line" />
@@ -332,14 +337,14 @@ function IntroductionSection() {
       </div>
 
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 lg:gap-16 px-4">
-        
+
         {/* Chú rể */}
         <div className="flex flex-col items-center animate-on-scroll slide-left delay-200 group w-full md:w-[45%]">
           <div className="relative w-64 h-[22rem] md:w-72 md:h-[26rem] rounded-t-full rounded-b-3xl overflow-hidden border-[6px] border-white shadow-[0_15px_40px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:-translate-y-2">
             <img src="/images/wedding/wedding-10.jpg" alt="Chú rể" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          
+
           <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
             <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2">Chú rể</p>
             <h3 className="font-serif text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1">Nguyễn Đức Việt</h3>
@@ -368,7 +373,7 @@ function IntroductionSection() {
             <img src="/images/wedding/wedding-3.jpg" alt="Cô dâu" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          
+
           <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
             <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2">Cô dâu</p>
             <h3 className="font-serif text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1">Nguyễn Thị Thoa</h3>
@@ -397,7 +402,7 @@ const LOVE_STORY = [
     icon: "coffee",
   },
   {
-    date: "14 Tháng 2, 2020",
+    date: "14 Tháng 2, 2023",
     title: "Lần hẹn hò đầu tiên",
     text: "Buổi tối đầu tiên bên nhau, cùng ngồi trong rạp phim mờ ảo, tay chạm tay khẽ run dưới ánh sáng lập lòe. Những câu chuyện dở dang thì thầm bên tai, xen lẫn tiếng nhạc phim da diết, khiến nhịp tim dồn dập hơn cả cao trào trên màn bạc.",
     image: IMAGES.story6,
