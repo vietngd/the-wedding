@@ -8,22 +8,25 @@ const IMAGES = {
   couple: "/images/wedding/wedding-11.jpg",
   story1: "/images/wedding/wedding-3.jpg",
   story2: "/images/wedding/wedding-5.jpg",
-  story3: "/images/wedding/wedding-8.jpg",
+  story3: "/images/wedding/wedding-14.jpg",
   story4: "/images/wedding/wedding-6.jpg",
   story5: "/images/wedding/wedding-1.jpg",
-  story6: "/images/wedding/wedding-16.jpg",
+  story6: "/images/wedding/wedding-15.jpg",
   story7: "/images/wedding/wedding-15.jpg",
   gallery: [
     "/images/wedding/wedding-4.jpg",
     "/images/wedding/wedding-9.jpg",
-    "/images/wedding/wedding-10.jpg",
     "/images/wedding/wedding-1.jpg",
     "/images/wedding/wedding-12.jpg",
-    "/images/wedding/wedding-13.jpg",
-    "/images/wedding/wedding-14.jpg",
+    "/images/wedding/wedding-22.jpg",
     "/images/wedding/wedding-15.jpg",
     "/images/wedding/wedding-16.jpg",
-    "/images/wedding/wedding-2.jpg",
+    "/images/wedding/wedding-7.jpg",
+    "/images/wedding/wedding-17.jpg",
+    "/images/wedding/wedding-18.jpg",
+    "/images/wedding/wedding-19.jpg",
+    "/images/wedding/wedding-21.jpg",
+    "/images/wedding/wedding-23.jpg",
   ],
 };
 
@@ -33,11 +36,13 @@ const WEDDING = {
   brideName: "Thoa Nguyễn",
   date: "2026-05-10T11:00:00",
   dateDisplay: "09 . 05 . 2026",
+  lunarDate: "Tức 23 tháng 3 năm Bính Ngọ",
   events: [
     {
       id: "dan-trau",
       title: "Lễ Dẫn Trầu",
       date: "09 . 05 . 2026",
+      lunarDate: "Tức 23 tháng 3 năm Bính Ngọ",
       relativeDay: "Thứ Bảy",
       time: "09:00",
       venue: "Tư gia",
@@ -47,6 +52,7 @@ const WEDDING = {
       id: "dai-le",
       title: "Lễ Cưới",
       date: "10 . 05 . 2026",
+      lunarDate: "Tức 24 tháng 3 năm Bính Ngọ",
       relativeDay: "Chủ Nhật",
       time: "14:00",
       venue: "Tư gia",
@@ -265,7 +271,8 @@ function HeroSection() {
         <span className="hero-ampersand">&amp;</span>
         <h1 className="hero-title">{WEDDING.brideName}</h1>
         <p className="hero-tagline">&ldquo;Nơi tình yêu bắt đầu chương mới&rdquo;</p>
-        <p className="hero-date">{WEDDING.dateDisplay}</p>
+        <p className="hero-date">{WEDDING.dateDisplay}<br />({WEDDING.lunarDate})</p>
+
       </div>
 
       <div className="scroll-indicator" onClick={scrollDown}>
@@ -309,9 +316,10 @@ function CoupleSection() {
           đến chung vui trong ngày lễ trọng đại của chúng tôi<br />
 
         </div>
-        <div className="couple-description inline-block mt-3 px-8 py-2 mt-5 rounded-full w-[160px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
+        <div className="couple-description inline-block px-8 pt-3 pb-1 mt-5 rounded-3xl min-w-[220px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
           Lúc 17h00 <br />
-          09-05-2026
+          09-05-2026 <br />
+          <span className="text-[14px] font-medium italic opacity-85">(Tức 23 tháng 3 Âm lịch)</span>
         </div>
       </div>
     </section>
@@ -397,28 +405,28 @@ const LOVE_STORY = [
   {
     date: "Tháng 2, 2023",
     title: "Lần đầu gặp nhau",
-    text: "Một buổi chiều nắng nhẹ, tình cờ gặp nhau tại quán cà phê quen thuộc. Ánh mắt chạm nhau, và từ khoảnh khắc ấy, trái tim đã biết rằng đây là người đặc biệt.",
+    text: "Cơ duyên bắt đầu ngay giữa ngày hội làng quê. Trong không khí náo nhiệt ấy, anh vô tình bắt quả tang một cô nàng đang len lén đưa điện thoại lên chụp trộm mình. Lời làm quen bối rối hôm đó kéo theo một chầu cà phê, và mọi chuyện sau đó diễn ra thật tự nhiên.",
     image: IMAGES.story4,
     icon: "coffee",
   },
   {
     date: "14 Tháng 2, 2023",
     title: "Lần hẹn hò đầu tiên",
-    text: "Buổi tối đầu tiên bên nhau, cùng ngồi trong rạp phim mờ ảo, tay chạm tay khẽ run dưới ánh sáng lập lòe. Những câu chuyện dở dang thì thầm bên tai, xen lẫn tiếng nhạc phim da diết, khiến nhịp tim dồn dập hơn cả cao trào trên màn bạc.",
+    text: "Buổi hẹn hò chính thức đầu tiên, hai đứa chọn đi xem phim. Bộ phim có hay không thì chẳng nhớ, chỉ nhớ là những câu chuyện kể cho nhau nghe sau đó cứ kéo dài mãi không muốn về.",
     image: IMAGES.story6,
     icon: "walk",
   },
   {
     date: "2023 — 2026",
-    title: "Hành trình yêu nhau",
-    text: "Cùng nắm tay bước qua bao mùa nắng gió, cười vang trong niềm vui, lau nước mắt những lúc yếu lòng, và cùng nhau lớn khôn. Mỗi khoảnh khắc bên em là chương sử kỳ diệu, khắc sâu mãi trong tim anh.",
+    title: "Hành trình bên nhau",
+    text: "Hơn 3 năm gắn bó, trải qua đủ những niềm vui và cả những lần giận dỗi. Tình yêu của chúng mình không ồn ào, chỉ là sự hiện diện bình dị mỗi ngày, cùng thấu hiểu và trở thành thói quen không thể thiếu của nhau.",
     image: IMAGES.story3,
     icon: "heart",
   },
   {
     date: "Tháng 9, 2025",
     title: "Lời cầu hôn",
-    text: "Dưới ánh nến lung linh và biển hoa hồng rực rỡ, anh nắm chặt tay em, giọng run run: \"Em có sẵn sàng đồng hành cùng anh, trọn đời trọn kiếp?\" Nước mắt hạnh phúc lăn dài: \"Em đồng ý, mãi mãi!\"",
+    text: "Sự chuẩn bị có đôi phần lóng ngóng nhưng ngập tràn chân thành. Nhìn thẳng vào mắt nhau, anh bảo: 'Làm vợ anh nhé? Để anh được chăm sóc em mỗi ngày'. Chỉ đơn giản vậy thôi, cũng đủ để em mỉm cười gật đầu.",
     image: IMAGES.story5,
     icon: "ring",
   },
@@ -488,10 +496,15 @@ function EventSection() {
             </h3>
 
             <div className="space-y-4 w-full flex-grow">
-              <div className="flex items-center justify-center gap-2.5">
-                <CalendarIcon className="w-5 h-5 text-[#c9956b]" />
-                <p className="font-elegant text-[#3a2a22] font-medium text-[16px]">
-                  {event.relativeDay}, {event.date}
+              <div className="flex flex-col items-center justify-center gap-1">
+                <div className="flex items-center gap-2.5">
+                  <CalendarIcon className="w-5 h-5 text-[#c9956b]" />
+                  <p className="font-elegant text-[#3a2a22] font-medium text-[16px]">
+                    {event.relativeDay}, {event.date}
+                  </p>
+                </div>
+                <p className="font-elegant text-[#c9956b] italic text-[14px]">
+                  ({event.lunarDate})
                 </p>
               </div>
 
@@ -554,22 +567,6 @@ const MESSAGE_TEXT =
 
 function MessageSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { displayed, done, start } = useTypewriter(MESSAGE_TEXT, 20, 300);
-  const [hasStarted, setHasStarted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasStarted) {
-          setHasStarted(true);
-          start();
-        }
-      },
-      { threshold: 0.2 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, [hasStarted, start]);
 
   return (
     <section className="wedding-section message-section" id="message" ref={sectionRef}>
@@ -577,11 +574,10 @@ function MessageSection() {
         <p className="section-title-script">Lời nhắn gửi</p>
       </div>
 
-      <div className="message-content animate-on-scroll delay-300">
+      <div className="message-content animate-on-scroll scale-in delay-300">
         <span className="message-quote-mark">&ldquo;</span>
-        <p className="message-text">
-          <span className="typewriter-text">{displayed}</span>
-          {!done && <span className="typewriter-cursor" />}
+        <p className="message-text !font-serif text-[#5c4a40] leading-loose">
+          {MESSAGE_TEXT}
         </p>
       </div>
     </section>
@@ -645,7 +641,7 @@ function GallerySection() {
     <section className="wedding-section gallery-section" id="gallery">
       <div className="animate-on-scroll">
         <p className="section-title-script">Khoảnh Khắc Đẹp</p>
-        <p className="section-subtitle">Những kỷ niệm ngọt ngào của chúng tôi</p>
+        <p className="section-subtitle">Những khoảnh khắc ngọt ngào của chúng tôi</p>
       </div>
 
       <div className="gallery-scroll" ref={scrollRef}>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "Thiệp Cưới",
     images: [
       {
-        url: "/images/wedding/wedding-1.jpg", 
+        url: "/images/wedding/wedding-1.jpg",
         width: 1200,
         height: 630,
         alt: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",

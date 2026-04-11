@@ -75,6 +75,7 @@ body {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -86,6 +87,7 @@ body {
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -93,8 +95,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInLeft {
@@ -102,6 +109,7 @@ body {
     opacity: 0;
     transform: translateX(-60px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -113,6 +121,7 @@ body {
     opacity: 0;
     transform: translateX(60px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -120,18 +129,37 @@ body {
 }
 
 @keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  10% { transform: scale(1.15); }
-  20% { transform: scale(1); }
-  30% { transform: scale(1.15); }
-  40% { transform: scale(1); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.15);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.15);
+  }
+
+  40% {
+    transform: scale(1);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(212, 165, 165, 0.4);
   }
+
   50% {
     transform: scale(1.05);
     box-shadow: 0 0 0 15px rgba(212, 165, 165, 0);
@@ -139,10 +167,13 @@ body {
 }
 
 @keyframes sparkle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0) rotate(0deg);
   }
+
   50% {
     opacity: 1;
     transform: scale(1) rotate(180deg);
@@ -150,8 +181,15 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes floatHeart {
@@ -159,6 +197,7 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1) rotate(0deg);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-120px) scale(0.3) rotate(45deg);
@@ -166,23 +205,45 @@ body {
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blinkCursor {
-  0%, 100% { border-right-color: var(--color-primary); }
-  50% { border-right-color: transparent; }
+
+  0%,
+  100% {
+    border-right-color: var(--color-primary);
+  }
+
+  50% {
+    border-right-color: transparent;
+  }
 }
 
 @keyframes rotateFlower {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes scaleIn {
@@ -190,6 +251,7 @@ body {
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -197,13 +259,25 @@ body {
 }
 
 @keyframes gentleSwing {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
+
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
 }
 
 @keyframes drawLine {
-  from { height: 0; }
-  to { height: 100%; }
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
+  }
 }
 
 @keyframes petalFall {
@@ -211,15 +285,19 @@ body {
     opacity: 1;
     transform: translateY(-10%) translateX(0) rotate(0deg);
   }
+
   25% {
     transform: translateY(25vh) translateX(15px) rotate(90deg);
   }
+
   50% {
     transform: translateY(50vh) translateX(-10px) rotate(180deg);
   }
+
   75% {
     transform: translateY(75vh) translateX(20px) rotate(270deg);
   }
+
   100% {
     opacity: 0;
     transform: translateY(100vh) translateX(-5px) rotate(360deg);
@@ -265,13 +343,33 @@ body {
 }
 
 /* Delay utilities */
-.delay-100 { transition-delay: 0.1s; }
-.delay-200 { transition-delay: 0.2s; }
-.delay-300 { transition-delay: 0.3s; }
-.delay-400 { transition-delay: 0.4s; }
-.delay-500 { transition-delay: 0.5s; }
-.delay-600 { transition-delay: 0.6s; }
-.delay-800 { transition-delay: 0.8s; }
+.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.delay-300 {
+  transition-delay: 0.3s;
+}
+
+.delay-400 {
+  transition-delay: 0.4s;
+}
+
+.delay-500 {
+  transition-delay: 0.5s;
+}
+
+.delay-600 {
+  transition-delay: 0.6s;
+}
+
+.delay-800 {
+  transition-delay: 0.8s;
+}
 
 /* ============================================
    HERO SECTION
@@ -304,12 +402,10 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(253, 248, 245, 0.1) 0%,
-    rgba(90, 74, 66, 0.35) 50%,
-    rgba(58, 42, 34, 0.7) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(253, 248, 245, 0.1) 0%,
+      rgba(90, 74, 66, 0.35) 50%,
+      rgba(58, 42, 34, 0.7) 100%);
   z-index: 1;
 }
 
@@ -332,11 +428,16 @@ body {
 
 .hero-title {
   font-family: var(--font-script);
-  font-size: clamp(40px, 10vw, 72px);
+  font-size: clamp(44px, 12vw, 84px); /* Slightly larger for better readability */
   color: var(--color-white);
-  line-height: 1.2;
+  line-height: 1.4; /* Increased line-height for flourishes */
   margin-bottom: 8px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #fbf2e9, #e6c891, #fbf2e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 20px; /* Crucial: padding for flourishes */
+  overflow: visible; /* Crucial: don't clip swashes */
 }
 
 .hero-ampersand {
@@ -351,9 +452,16 @@ body {
   font-family: var(--font-elegant);
   font-size: 16px;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.85);
+  background: linear-gradient(to right, #fbf2e9, #e6c891, #fbf2e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-top: 20px;
   letter-spacing: 1px;
+
+}
+
+.padding-hero {
+  padding-top: 20px;
 }
 
 .hero-date {
@@ -363,7 +471,8 @@ body {
   letter-spacing: 4px;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
 }
 
 .scroll-indicator {
@@ -379,7 +488,7 @@ body {
 .scroll-indicator svg {
   width: 28px;
   height: 28px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* ============================================
@@ -473,12 +582,10 @@ body {
    COUPLE NAMES SECTION
    ============================================ */
 .couple-section {
-  background: linear-gradient(
-    180deg,
-    var(--color-bg) 0%,
-    var(--color-blush) 50%,
-    var(--color-bg) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--color-bg) 0%,
+      var(--color-blush) 50%,
+      var(--color-bg) 100%);
   text-align: center;
 }
 
@@ -562,13 +669,11 @@ body {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--color-primary),
-    var(--color-primary),
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      transparent,
+      var(--color-primary),
+      var(--color-primary),
+      transparent);
 }
 
 .timeline-item {
@@ -653,11 +758,9 @@ body {
    EVENT INFO SECTION
    ============================================ */
 .event-section {
-  background: linear-gradient(
-    180deg,
-    var(--color-bg) 0%,
-    var(--color-bg-alt) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--color-bg) 0%,
+      var(--color-bg-alt) 100%);
 }
 
 .event-cards {
@@ -880,7 +983,7 @@ body {
   left: 0;
   right: 0;
   height: 40%;
-  background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.15), transparent);
   pointer-events: none;
 }
 
@@ -888,12 +991,10 @@ body {
    FOOTER / THANK YOU
    ============================================ */
 .footer-section {
-  background: linear-gradient(
-    180deg,
-    var(--color-bg) 0%,
-    var(--color-blush) 50%,
-    var(--color-primary-light) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--color-bg) 0%,
+      var(--color-blush) 50%,
+      var(--color-primary-light) 100%);
   text-align: center;
   padding: 80px 24px 60px;
 }
@@ -916,10 +1017,29 @@ body {
   animation: sparkle 2s ease-in-out infinite;
 }
 
-.footer-sparkle:nth-child(1) { top: -10px; left: -15px; animation-delay: 0s; }
-.footer-sparkle:nth-child(2) { top: -15px; right: -20px; animation-delay: 0.5s; }
-.footer-sparkle:nth-child(3) { bottom: 0; left: -20px; animation-delay: 1s; }
-.footer-sparkle:nth-child(4) { bottom: -5px; right: -15px; animation-delay: 1.5s; }
+.footer-sparkle:nth-child(1) {
+  top: -10px;
+  left: -15px;
+  animation-delay: 0s;
+}
+
+.footer-sparkle:nth-child(2) {
+  top: -15px;
+  right: -20px;
+  animation-delay: 0.5s;
+}
+
+.footer-sparkle:nth-child(3) {
+  bottom: 0;
+  left: -20px;
+  animation-delay: 1s;
+}
+
+.footer-sparkle:nth-child(4) {
+  bottom: -5px;
+  right: -15px;
+  animation-delay: 1.5s;
+}
 
 .footer-thankyou {
   font-family: var(--font-script);
