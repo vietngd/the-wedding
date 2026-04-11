@@ -5,28 +5,28 @@ import { useEffect, useRef, useState, useCallback } from "react";
 // ── Image paths ──
 const IMAGES = {
   hero: "/images/wedding/wedding-2.jpg",
-  couple: "/images/wedding/wedding-11.jpg",
+  couple: "/images/wedding/wedding-22.jpg",
   story1: "/images/wedding/wedding-3.jpg",
   story2: "/images/wedding/wedding-5.jpg",
   story3: "/images/wedding/wedding-14.jpg",
   story4: "/images/wedding/wedding-6.jpg",
   story5: "/images/wedding/wedding-1.jpg",
   story6: "/images/wedding/wedding-15.jpg",
-  story7: "/images/wedding/wedding-15.jpg",
+  // story7: "/images/wedding/wedding-15.jpg",
   gallery: [
-    "/images/wedding/wedding-4.jpg",
     "/images/wedding/wedding-9.jpg",
-    "/images/wedding/wedding-1.jpg",
-    "/images/wedding/wedding-12.jpg",
-    "/images/wedding/wedding-22.jpg",
-    "/images/wedding/wedding-15.jpg",
+    "/images/wedding/wedding-4.jpg",
+    "/images/wedding/wedding-11.jpg",
+    "/images/wedding/wedding-17.jpg",
+    "/images/wedding/wedding-19.jpg",
+    "/images/wedding/wedding-8.jpg",
     "/images/wedding/wedding-16.jpg",
     "/images/wedding/wedding-7.jpg",
-    "/images/wedding/wedding-17.jpg",
     "/images/wedding/wedding-18.jpg",
-    "/images/wedding/wedding-19.jpg",
     "/images/wedding/wedding-21.jpg",
     "/images/wedding/wedding-23.jpg",
+    "/images/wedding/wedding-20.jpg",
+    "/images/wedding/wedding-12.jpg",
   ],
 };
 
@@ -74,14 +74,6 @@ function CoffeeIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M17 8h1a4 4 0 110 8h-1" /><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" /><line x1="6" y1="2" x2="6" y2="4" /><line x1="10" y1="2" x2="10" y2="4" /><line x1="14" y1="2" x2="14" y2="4" />
-    </svg>
-  );
-}
-
-function StarIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
     </svg>
   );
 }
