@@ -38,17 +38,31 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
-  background: var(--color-bg);
+  background: #f0f0f0; /* Desktop background color */
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main Mobile Container Simulation on Desktop */
+main, .mobile-wrapper {
+  background: var(--color-bg);
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: 0 0 100px rgba(0,0,0,0.1);
 }
 
 /* ============================================
@@ -1140,18 +1154,46 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE ADJUSTMENTS
+   FIXED ELEMENTS ADJUSTMENTS
    ============================================ */
-@media (min-width: 768px) {
-  .wedding-section {
-    padding: 120px 40px;
-  }
+.petals-container {
+  position: fixed;
+  top: 0;
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
 
-  .gallery-item {
-    flex: 0 0 280px;
-  }
+/* Base style for music player in page.tsx updated with class */
+.floating-music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+}
 
-  .timeline {
-    max-width: 500px;
+@media (min-width: 480px) {
+  .floating-music-btn {
+    right: calc(50% - 240px + 24px);
   }
+}
+
+/* Extra safety for horizontal scroll */
+html, body, main {
+  overflow-x: hidden !important;
+  max-width: 100%;
+}
+
+* {
+  max-width: 100vw;
+}
+
+.gallery-scroll {
+  max-width: 100%;
+  overflow-x: auto;
 }
