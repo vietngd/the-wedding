@@ -288,7 +288,7 @@ function HeroSection() {
         <span className="hero-ampersand">&amp;</span>
         <h1 className="hero-title">{WEDDING.brideName}</h1>
         <p className="hero-tagline">&ldquo;Nơi tình yêu bắt đầu chương mới&rdquo;</p>
-        <p className="hero-date">{WEDDING.dateDisplay}<br />({WEDDING.lunarDate})</p>
+        <p className="hero-date !font-elegant">{WEDDING.dateDisplay}<br />({WEDDING.lunarDate})</p>
 
       </div>
 
@@ -310,7 +310,7 @@ function CoupleSection() {
       </div>
 
       <div className="animate-on-scroll delay-200">
-        <p className="announcement">Hân hoan thông báo</p>
+        <p className="announcement !font-elegant">Hân hoan thông báo</p>
       </div>
 
       <div className="animate-on-scroll delay-300">
@@ -371,13 +371,13 @@ function IntroductionSection() {
           </div>
 
           <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
-            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2">Chú rể</p>
-            <h3 className="font-serif text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1">Nguyễn Đức Việt</h3>
+            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">Chú rể</p>
+            <h3 className="font-elegant text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1 !font-elegant">Nguyễn Đức Việt</h3>
             <div className="flex items-center justify-center gap-2 mb-3">
               <CalendarIcon className="w-4 h-4 text-[#c9956b]" />
               <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">08 / 10 / 2002</p>
             </div>
-            <p className="text-[#8a7a72] text-[14px] italic leading-relaxed">
+            <p className="text-[#8a7a72] text-[14px] italic leading-relaxed !font-elegant">
               "Chàng trai trưởng thành, ấm áp, luôn mang lại niềm vui và là chỗ dựa vững chắc cho gia đình nhỏ."
             </p>
           </div>
@@ -400,13 +400,13 @@ function IntroductionSection() {
           </div>
 
           <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
-            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2">Cô dâu</p>
-            <h3 className="font-serif text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1">Nguyễn Thị Thoa</h3>
+            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">Cô dâu</p>
+            <h3 className="font-elegant text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1 !font-elegant">Nguyễn Thị Thoa</h3>
             <div className="flex items-center justify-center gap-2 mb-3">
               <CalendarIcon className="w-4 h-4 text-[#c9956b]" />
               <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">28 / 09 / 2002</p>
             </div>
-            <p className="text-[#8a7a72] text-[14px] italic leading-relaxed">
+            <p className="text-[#8a7a72] text-[14px] italic leading-relaxed !font-elegant">
               "Cô gái dịu dàng, rạng rỡ với nụ cười tỏa nắng, mang hạnh phúc và bình yên đến với người thương."
             </p>
           </div>
@@ -472,9 +472,9 @@ function LoveStorySection() {
             className={`timeline-item animate-on-scroll ${index % 2 === 0 ? "slide-left" : "slide-right"} delay-${(index + 1) * 200}`}
           >
             <div className="timeline-dot">{getTimelineIcon(item.icon)}</div>
-            <span className="timeline-date !text-base !font-serif">{item.date}</span>
-            <h3 className="timeline-title">{item.title}</h3>
-            <p className="timeline-text">{item.text}</p>
+            <span className="timeline-date !text-base !font-elegant">{item.date}</span>
+            <h3 className="timeline-title !font-elegant">{item.title}</h3>
+            <p className="timeline-text !font-elegant">{item.text}</p>
             <div className="timeline-image">
               <img src={item.image} alt={item.title} loading="lazy" />
             </div>
@@ -506,7 +506,7 @@ function EventSection() {
               {idx === 0 ? <HeartIcon className="w-7 h-7" /> : <RingIcon className="w-7 h-7" />}
             </div>
 
-            <h3 className="font-serif text-[20px] font-semibold text-[#3a2a22] mb-6">
+            <h3 className="font-elegant text-[20px] font-semibold text-[#3a2a22] mb-6">
               {event.title}
             </h3>
 
@@ -591,7 +591,7 @@ function MessageSection() {
 
       <div className="message-content animate-on-scroll scale-in delay-300">
         <span className="message-quote-mark">&ldquo;</span>
-        <p className="message-text !font-serif text-[#5c4a40] leading-loose">
+        <p className="message-text !font-elegant text-[#5c4a40] leading-loose">
           {MESSAGE_TEXT}
         </p>
       </div>
@@ -656,7 +656,7 @@ function GallerySection() {
     <section className="wedding-section gallery-section" id="gallery">
       <div className="animate-on-scroll">
         <p className="section-title-script">Khoảnh Khắc Đẹp</p>
-        <p className="section-subtitle">Những khoảnh khắc ngọt ngào của chúng tôi</p>
+        <p className="section-subtitle !font-elegant">Những khoảnh khắc ngọt ngào của chúng tôi</p>
       </div>
 
       <div className="gallery-scroll" ref={scrollRef}>
@@ -777,13 +777,13 @@ function WishesSection() {
     <section className="wedding-section wishes-section" id="wishes">
       <div className="animate-on-scroll">
         <p className="section-title-script">Gửi lời chúc</p>
-        <p className="section-subtitle">Lời chúc tốt đẹp nhất dành cho đôi uyên ương</p>
+        <p className="section-subtitle !font-elegant">Lời chúc tốt đẹp nhất dành cho đôi uyên ương</p>
       </div>
 
       <form className="wishes-form animate-on-scroll delay-200" onSubmit={handleSubmit}>
         <input
           type="text"
-          className="wishes-input"
+          className="wishes-input !font-elegant"
           placeholder="Tên của bạn"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -791,14 +791,14 @@ function WishesSection() {
           disabled={isSubmitting}
         />
         <textarea
-          className="wishes-textarea"
+          className="wishes-textarea !font-elegant"
           placeholder="Viết lời chúc..."
           value={wish}
           onChange={(e) => setWish(e.target.value)}
           required
           disabled={isSubmitting}
         />
-        <button type="submit" className="wishes-button flex items-center justify-center gap-2" disabled={isSubmitting}>
+        <button type="submit" className="wishes-button flex items-center !font-elegant justify-center gap-2" disabled={isSubmitting}>
           {isSubmitting ? (
             <>
               <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
@@ -821,7 +821,7 @@ function WishesSection() {
           </div>
         ) : wishesList.length > 0 ? (
           <div className="wishes-list">
-            <p className="text-center font-serif text-[#c48b8b] text-sm mb-8 italic opacity-80 decoration-[0.5px] decoration-dotted underline underline-offset-8">
+            <p className="text-center font-elegant text-[#c48b8b] text-sm mb-8 italic opacity-80 decoration-[0.5px] decoration-dotted underline underline-offset-8">
               — Sổ lưu bút ({wishesList.length}) —
             </p>
             {wishesList.map((item) => (
