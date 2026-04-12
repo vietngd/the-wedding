@@ -686,19 +686,43 @@ function WishesSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [wishesList, setWishesList] = useState<Wish[]>([]);
 
-  // Load from localStorage on mount (Simulating API fetch)
+  const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfIDRaXmWeOOENsW0oQvkeRvMA1c7rsLAPWI6H85IpK3eL85w/formResponse";
+  const GOOGLE_CSV_URL = "https://docs.google.com/spreadsheets/d/1kJ_nMM9x_YUgAe8NQd4wMmW2MZ53B4N60fLDIC9_lKg/gviz/tq?tqx=out:csv";
+  const ENTRY_NAME = "entry.1073959576";
+  const ENTRY_WISH = "entry.639698557";
+
+  // Load from Google Sheet on mount
   useEffect(() => {
     const loadWishes = async () => {
       setIsFetching(true);
-      // Simulate API latency
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      const saved = localStorage.getItem("wedding_wishes");
-      if (saved) {
-        try {
-          setWishesList(JSON.parse(saved));
-        } catch (e) {
-          console.error("Failed to parse wishes", e);
-        }
+      try {
+        const response = await fetch(GOOGLE_CSV_URL, { cache: "no-store" });
+        const csvData = await response.text();
+        
+        // Basic CSV parsing (skipping header)
+        const rows = csvData.split("\n").slice(1);
+        const parsedWishes: Wish[] = rows
+          .map((row, index) => {
+            // Regex to handle potential commas inside quotes
+            const parts = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if (parts.length < 3) return null;
+            
+            return {
+              id: index,
+              name: parts[1]?.replace(/^"|"$/g, "").trim() || "Ẩn danh",
+              wish: parts[2]?.replace(/^"|"$/g, "").trim() || "",
+              date: parts[0]?.split(" ")[0] || "", // Extract date from timestamp
+            };
+          })
+          .filter((w): w is Wish => w !== null && w.wish !== "")
+          .reverse(); // Newest first
+
+        setWishesList(parsedWishes);
+      } catch (e) {
+        console.error("Failed to fetch wishes from Google Sheets", e);
+        // Fallback to localStorage if CSV fails
+        const saved = localStorage.getItem("wedding_wishes");
+        if (saved) setWishesList(JSON.parse(saved));
       }
       setIsFetching(false);
     };
@@ -709,25 +733,43 @@ function WishesSection() {
     e.preventDefault();
     if (name.trim() && wish.trim() && !isSubmitting) {
       setIsSubmitting(true);
-      // Simulate API submission latency
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+      
+      try {
+        const formData = new FormData();
+        formData.append(ENTRY_NAME, name);
+        formData.append(ENTRY_WISH, wish);
 
-      const newWish: Wish = {
-        id: Date.now(),
-        name: name,
-        wish: wish,
-        date: new Date().toLocaleDateString("vi-VN"),
-      };
+        // Submit to Google Form
+        await fetch(GOOGLE_FORM_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData,
+        });
 
-      const updatedList = [newWish, ...wishesList];
-      setWishesList(updatedList);
-      localStorage.setItem("wedding_wishes", JSON.stringify(updatedList));
+        // Add to local state immediately for UX
+        const newWish: Wish = {
+          id: Date.now(),
+          name: name,
+          wish: wish,
+          date: new Date().toLocaleDateString("vi-VN"),
+        };
 
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
-      setName("");
-      setWish("");
+        const updatedList = [newWish, ...wishesList];
+        setWishesList(updatedList);
+        
+        // Also save to localStorage as backup
+        localStorage.setItem("wedding_wishes", JSON.stringify(updatedList));
+
+        setIsSubmitting(false);
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 3000);
+        setName("");
+        setWish("");
+      } catch (error) {
+        console.error("Submission failed", error);
+        setIsSubmitting(false);
+        alert("Có lỗi xảy ra khi gửi lời chúc. Vui lòng thử lại sau!");
+      }
     }
   };
 
