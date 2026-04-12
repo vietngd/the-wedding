@@ -553,22 +553,22 @@ function EventSection() {
           <span className="line" />
         </div>
         <p className="section-subtitle" style={{ marginBottom: 16 }}>Đếm ngược đến ngày trọng đại</p>
-        <div className="event-countdown">
-          <div className="countdown-item">
-            <span className="countdown-number">{countdown.days}</span>
-            <span className="countdown-label">Ngày</span>
+        <div className="event-countdown !font-elegant">
+          <div className="countdown-item ">
+            <span className="countdown-number !font-elegant">{countdown.days}</span>
+            <span className="countdown-label !font-elegant">Ngày</span>
           </div>
           <div className="countdown-item">
-            <span className="countdown-number">{String(countdown.hours).padStart(2, "0")}</span>
-            <span className="countdown-label">Giờ</span>
+            <span className="countdown-number !font-elegant">{String(countdown.hours).padStart(2, "0")}</span>
+            <span className="countdown-label !font-elegant">Giờ</span>
           </div>
           <div className="countdown-item">
-            <span className="countdown-number">{String(countdown.minutes).padStart(2, "0")}</span>
-            <span className="countdown-label">Phút</span>
+            <span className="countdown-number !font-elegant">{String(countdown.minutes).padStart(2, "0")}</span>
+            <span className="countdown-label !font-elegant">Phút</span>
           </div>
           <div className="countdown-item">
-            <span className="countdown-number">{String(countdown.seconds).padStart(2, "0")}</span>
-            <span className="countdown-label">Giây</span>
+            <span className="countdown-number !font-elegant">{String(countdown.seconds).padStart(2, "0")}</span>
+            <span className="countdown-label !font-elegant">Giây</span>
           </div>
         </div>
       </div>
@@ -698,7 +698,7 @@ function WishesSection() {
       try {
         const response = await fetch(GOOGLE_CSV_URL, { cache: "no-store" });
         const csvData = await response.text();
-        
+
         // Basic CSV parsing (skipping header)
         const rows = csvData.split("\n").slice(1);
         const parsedWishes: Wish[] = rows
@@ -706,7 +706,7 @@ function WishesSection() {
             // Regex to handle potential commas inside quotes
             const parts = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             if (parts.length < 3) return null;
-            
+
             return {
               id: index,
               name: parts[1]?.replace(/^"|"$/g, "").trim() || "Ẩn danh",
@@ -733,7 +733,7 @@ function WishesSection() {
     e.preventDefault();
     if (name.trim() && wish.trim() && !isSubmitting) {
       setIsSubmitting(true);
-      
+
       try {
         const formData = new FormData();
         formData.append(ENTRY_NAME, name);
@@ -756,7 +756,7 @@ function WishesSection() {
 
         const updatedList = [newWish, ...wishesList];
         setWishesList(updatedList);
-        
+
         // Also save to localStorage as backup
         localStorage.setItem("wedding_wishes", JSON.stringify(updatedList));
 
