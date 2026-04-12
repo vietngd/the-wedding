@@ -225,16 +225,41 @@ function useScrollAnimation() {
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
     const el = ref.current;
     if (el) {
-      const children = el.querySelectorAll(".animate-on-scroll");
-      children.forEach((c) => observer.observe(c));
-    }
+      // Observe existing children
+      const observeChildren = (parent: Element) => {
+        const children = parent.querySelectorAll(".animate-on-scroll");
+        children.forEach((c) => observer.observe(c));
+      };
 
-    return () => observer.disconnect();
+      observeChildren(el);
+
+      // Mutation observer to handle dynamically added elements (like new wishes)
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node instanceof Element) {
+              if (node.classList.contains("animate-on-scroll")) {
+                observer.observe(node);
+              }
+              // Also check children of added nodes
+              observeChildren(node);
+            }
+          });
+        });
+      });
+
+      mutationObserver.observe(el, { childList: true, subtree: true });
+
+      return () => {
+        observer.disconnect();
+        mutationObserver.disconnect();
+      };
+    }
   }, []);
 
   return ref;
@@ -392,7 +417,6 @@ function IntroductionSection() {
   );
 }
 
-// ── 4. Love Story Timeline ──
 const LOVE_STORY = [
   {
     date: "Tháng 2, 2023",
@@ -409,21 +433,20 @@ const LOVE_STORY = [
     icon: "walk",
   },
   {
-    date: "2023 — 2026",
-    title: "Hành trình bên nhau",
-    text: "Hơn 3 năm gắn bó, trải qua đủ những niềm vui và cả những lần giận dỗi. Tình yêu của chúng mình không ồn ào, chỉ là sự hiện diện bình dị mỗi ngày, cùng thấu hiểu và trở thành thói quen không thể thiếu của nhau.",
-    image: IMAGES.story3,
-    icon: "heart",
-  },
-  {
     date: "Tháng 9, 2025",
     title: "Lời cầu hôn",
     text: "Sự chuẩn bị có đôi phần lóng ngóng nhưng ngập tràn chân thành. Nhìn thẳng vào mắt nhau, anh bảo: 'Làm vợ anh nhé? Để anh được chăm sóc em mỗi ngày'. Chỉ đơn giản vậy thôi, cũng đủ để em mỉm cười gật đầu.",
     image: IMAGES.story5,
     icon: "ring",
   },
+  {
+    date: "2023 — nay",
+    title: "Và chúng mình vẫn đang tiếp tục...",
+    text: "Sau tất cả, tụi mình vẫn ở đây, bên cạnh nhau. Không cần quá ồn ào, chỉ cần mỗi ngày đều có nhau là đủ. Và hành trình này, vẫn sẽ còn tiếp tục thật lâu về sau.",
+    image: IMAGES.story3,
+    icon: "heart",
+  },
 ];
-
 function getTimelineIcon(icon: string) {
   switch (icon) {
     case "coffee": return <CoffeeIcon />;
@@ -648,14 +671,59 @@ function GallerySection() {
 }
 
 // ── 8. Wishes Section ──
+type Wish = {
+  id: number;
+  name: string;
+  wish: string;
+  date: string;
+};
+
 function WishesSection() {
   const [name, setName] = useState("");
   const [wish, setWish] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [wishesList, setWishesList] = useState<Wish[]>([]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Load from localStorage on mount (Simulating API fetch)
+  useEffect(() => {
+    const loadWishes = async () => {
+      setIsFetching(true);
+      // Simulate API latency
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      const saved = localStorage.getItem("wedding_wishes");
+      if (saved) {
+        try {
+          setWishesList(JSON.parse(saved));
+        } catch (e) {
+          console.error("Failed to parse wishes", e);
+        }
+      }
+      setIsFetching(false);
+    };
+    loadWishes();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim() && wish.trim()) {
+    if (name.trim() && wish.trim() && !isSubmitting) {
+      setIsSubmitting(true);
+      // Simulate API submission latency
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+
+      const newWish: Wish = {
+        id: Date.now(),
+        name: name,
+        wish: wish,
+        date: new Date().toLocaleDateString("vi-VN"),
+      };
+
+      const updatedList = [newWish, ...wishesList];
+      setWishesList(updatedList);
+      localStorage.setItem("wedding_wishes", JSON.stringify(updatedList));
+
+      setIsSubmitting(false);
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 3000);
       setName("");
@@ -677,17 +745,59 @@ function WishesSection() {
           placeholder="Tên của bạn"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
+          disabled={isSubmitting}
         />
         <textarea
           className="wishes-textarea"
           placeholder="Viết lời chúc..."
           value={wish}
           onChange={(e) => setWish(e.target.value)}
+          required
+          disabled={isSubmitting}
         />
-        <button type="submit" className="wishes-button">
-          {submitted ? "✓ Đã gửi lời chúc!" : "Gửi lời chúc ♡"}
+        <button type="submit" className="wishes-button flex items-center justify-center gap-2" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <>
+              <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              Đang gửi...
+            </>
+          ) : submitted ? (
+            "✓ Đã gửi lời chúc!"
+          ) : (
+            "Gửi lời chúc ♡"
+          )}
         </button>
       </form>
+
+      {/* Wishes List Display */}
+      <div className="mt-16 max-w-[400px] mx-auto px-1">
+        {isFetching ? (
+          <div className="flex flex-col items-center justify-center py-10 opacity-50">
+            <div className="w-8 h-8 border-2 border-[#d4a5a5]/30 border-t-[#d4a5a5] rounded-full animate-spin mb-3"></div>
+            <p className="font-elegant italic text-sm text-[#8a7a72]">Đang tải lời chúc...</p>
+          </div>
+        ) : wishesList.length > 0 ? (
+          <div className="wishes-list">
+            <p className="text-center font-serif text-[#c48b8b] text-sm mb-8 italic opacity-80 decoration-[0.5px] decoration-dotted underline underline-offset-8">
+              — Sổ lưu bút ({wishesList.length}) —
+            </p>
+            {wishesList.map((item) => (
+              <div key={item.id} className="wishes-card fade-in-up">
+                <p className="wish-name">
+                  {item.name}
+                </p>
+                <p className="wish-text">
+                  "{item.wish}"
+                </p>
+                <span className="wish-date">
+                  {item.date}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
     </section>
   );
 }
