@@ -57,14 +57,19 @@ const WEDDING = {
       time: "14:00",
       venue: "Tư gia",
       address: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
-    }
-  ]
+    },
+  ],
 };
 
 // ── SVG Icons as components ──
 function HeartIcon({ className = "" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
     </svg>
   );
@@ -72,39 +77,86 @@ function HeartIcon({ className = "" }: { className?: string }) {
 
 function CoffeeIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 8h1a4 4 0 110 8h-1" /><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" /><line x1="6" y1="2" x2="6" y2="4" /><line x1="10" y1="2" x2="10" y2="4" /><line x1="14" y1="2" x2="14" y2="4" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17 8h1a4 4 0 110 8h-1" />
+      <path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" />
+      <line x1="6" y1="2" x2="6" y2="4" />
+      <line x1="10" y1="2" x2="10" y2="4" />
+      <line x1="14" y1="2" x2="14" y2="4" />
     </svg>
   );
 }
 
 function MapPinIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+      <circle cx="12" cy="10" r="3" />
     </svg>
   );
 }
 
 function CalendarIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
     </svg>
   );
 }
 
 function ClockIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
     </svg>
   );
 }
 
 function ChevronDown() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <polyline points="6 9 12 15 18 9" />
     </svg>
   );
@@ -112,33 +164,63 @@ function ChevronDown() {
 
 function RingIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <circle cx="12" cy="14" r="8" /><path d="M9 3l3 4 3-4" /><path d="M12 7v3" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <circle cx="12" cy="14" r="8" />
+      <path d="M9 3l3 4 3-4" />
+      <path d="M12 7v3" />
     </svg>
   );
 }
 
 function WalkIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="4" r="2" /><path d="M15 22l-3-8-3 8" /><path d="M9 14l-2-4 5-2 5 2-2 4" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="4" r="2" />
+      <path d="M15 22l-3-8-3 8" />
+      <path d="M9 14l-2-4 5-2 5 2-2 4" />
     </svg>
   );
 }
 
 // ── Floating petals ──
 function FloatingPetals() {
-  const [petals, setPetals] = useState<Array<{ id: number; left: string; size: number; duration: number; delay: number; opacity: number }>>([]);
+  const [petals, setPetals] = useState<
+    Array<{
+      id: number;
+      left: string;
+      size: number;
+      duration: number;
+      delay: number;
+      opacity: number;
+    }>
+  >([]);
 
   useEffect(() => {
-    setPetals(Array.from({ length: 12 }, (_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      size: 8 + Math.random() * 10,
-      duration: 8 + Math.random() * 12,
-      delay: Math.random() * 10,
-      opacity: 0.2 + Math.random() * 0.3,
-    })));
+    setPetals(
+      Array.from({ length: 12 }, (_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        size: 8 + Math.random() * 10,
+        duration: 8 + Math.random() * 12,
+        delay: Math.random() * 10,
+        opacity: 0.2 + Math.random() * 0.3,
+      })),
+    );
   }, []);
 
   if (petals.length === 0) return null;
@@ -177,7 +259,12 @@ function useCountdown(targetDate: string) {
   }, [targetDate]);
 
   // Start with zeros to avoid SSR mismatch (Date.now() differs server vs client)
-  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [time, setTime] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
   useEffect(() => {
     setTime(calculate());
     const timer = setInterval(() => setTime(calculate()), 1000);
@@ -225,7 +312,7 @@ function useScrollAnimation() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     );
 
     const el = ref.current;
@@ -287,8 +374,13 @@ function HeroSection() {
         <h1 className="hero-title">{WEDDING.groomName}</h1>
         <span className="hero-ampersand">&amp;</span>
         <h1 className="hero-title">{WEDDING.brideName}</h1>
-        <p className="hero-tagline">&ldquo;Nơi tình yêu bắt đầu chương mới&rdquo;</p>
-        <p className="hero-date !font-elegant">{WEDDING.dateDisplay}<br />({WEDDING.lunarDate})</p>
+        <p className="hero-tagline">
+          &ldquo;Nơi tình yêu bắt đầu chương mới&rdquo;
+        </p>
+        <p className="hero-date !font-elegant">
+          {WEDDING.dateDisplay}
+          <br />({WEDDING.lunarDate})
+        </p>
       </div>
 
       <div className="scroll-indicator" onClick={scrollDown}>
@@ -303,9 +395,11 @@ function CoupleSection() {
   return (
     <section className="wedding-section couple-section" id="couple">
       <div className="animate-on-scroll scale-in flex justify-center rounded-full">
-
-        <img src={IMAGES.couple} alt="Couple portrait" className="object-cover min-w-[200px] h-[200px] rounded-full" />
-
+        <img
+          src={IMAGES.couple}
+          alt="Couple portrait"
+          className="object-cover min-w-[200px] h-[200px] rounded-full"
+        />
       </div>
 
       <div className="animate-on-scroll delay-200">
@@ -328,14 +422,17 @@ function CoupleSection() {
 
       <div className="animate-on-scroll delay-500 px-4">
         <div className="couple-description text-center leading-loose">
-          Trân trọng kính mời bạn cùng người thương<br />
-          đến chung vui trong ngày lễ trọng đại của chúng tôi<br />
-
+          Trân trọng kính mời bạn cùng người thương
+          <br />
+          đến chung vui trong ngày lễ trọng đại của chúng tôi
+          <br />
         </div>
         <div className="couple-description inline-block px-8 pt-3 pb-1 mt-5 rounded-3xl min-w-[220px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
           Lúc 17h00 <br />
           09-05-2026 <br />
-          <span className="text-[14px] font-medium italic opacity-85">(Tức 23 tháng 3 Âm lịch)</span>
+          <span className="text-[14px] font-medium italic opacity-85">
+            (Tức 23 tháng 3 Âm lịch)
+          </span>
         </div>
       </div>
     </section>
@@ -345,13 +442,16 @@ function CoupleSection() {
 // ── 3. Introduction Section ──
 function IntroductionSection() {
   return (
-    <section className="wedding-section pb-24 pt-12 relative overflow-hidden" id="introduction">
+    <section
+      className="wedding-section pb-24 pt-12 relative overflow-hidden"
+      id="introduction"
+    >
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#f8e8e0] rounded-full filter blur-3xl opacity-50 -z-10 translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#f0d5d5] rounded-full filter blur-3xl opacity-40 -z-10 -translate-x-1/2 translate-y-1/2"></div>
 
       <div className="animate-on-scroll mb-16">
-        <p className="section-title-script">Chú Rể {" "} &  {" "} Cô Dâu</p>
+        <p className="section-title-script">Chú Rể & Cô Dâu</p>
         <p className="section-subtitle">Hai mảnh ghép hoàn hảo</p>
         <div className="ornament-divider mt-4">
           <span className="line" />
@@ -361,23 +461,33 @@ function IntroductionSection() {
       </div>
 
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 lg:gap-16 px-4">
-
         {/* Chú rể */}
         <div className="flex flex-col items-center animate-on-scroll slide-left delay-200 group w-full md:w-[45%]">
           <div className="relative w-64 h-[22rem] md:w-72 md:h-[26rem] rounded-t-full rounded-b-3xl overflow-hidden border-[6px] border-white shadow-[0_15px_40px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:-translate-y-2">
-            <img src="/images/wedding/wedding-10.jpg" alt="Chú rể" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img
+              src="/images/wedding/wedding-10.jpg"
+              alt="Chú rể"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
 
           <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
-            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">Chú rể</p>
-            <h3 className="font-elegant text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1 !font-elegant">Nguyễn Đức Việt</h3>
+            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">
+              Chú rể
+            </p>
+            <h3 className="font-elegant text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1 !font-elegant">
+              Nguyễn Đức Việt
+            </h3>
             <div className="flex items-center justify-center gap-2 mb-3">
               <CalendarIcon className="w-4 h-4 text-[#c9956b]" />
-              <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">08 / 10 / 2002</p>
+              <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">
+                08 / 10 / 2002
+              </p>
             </div>
             <p className="text-[#8a7a72] text-[14px] italic leading-relaxed !font-elegant">
-              "Chàng trai trưởng thành, ấm áp, luôn mang lại niềm vui và là chỗ dựa vững chắc cho gia đình nhỏ."
+              "Chàng trai trưởng thành, ấm áp, luôn mang lại niềm vui và là chỗ
+              dựa vững chắc cho gia đình nhỏ."
             </p>
           </div>
         </div>
@@ -394,23 +504,33 @@ function IntroductionSection() {
         {/* Cô dâu */}
         <div className="flex flex-col items-center animate-on-scroll slide-right delay-400 group w-full md:w-[45%]">
           <div className="relative w-64 h-[22rem] md:w-72 md:h-[26rem] rounded-t-full rounded-b-3xl overflow-hidden border-[6px] border-white shadow-[0_15px_40px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:-translate-y-2">
-            <img src="/images/wedding/wedding-3.jpg" alt="Cô dâu" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img
+              src="/images/wedding/wedding-3.jpg"
+              alt="Cô dâu"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
 
           <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
-            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">Cô dâu</p>
-            <h3 className="font-elegant text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1 !font-elegant">Nguyễn Thị Thoa</h3>
+            <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">
+              Cô dâu
+            </p>
+            <h3 className="font-elegant text-[28px] md:text-[32px] font-semibold text-[#3a2a22] mb-1 !font-elegant">
+              Nguyễn Thị Thoa
+            </h3>
             <div className="flex items-center justify-center gap-2 mb-3">
               <CalendarIcon className="w-4 h-4 text-[#c9956b]" />
-              <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">28 / 09 / 2002</p>
+              <p className="font-elegant text-[#c9956b] text-[16px] tracking-wide">
+                28 / 09 / 2002
+              </p>
             </div>
             <p className="text-[#8a7a72] text-[14px] italic leading-relaxed !font-elegant">
-              "Cô gái dịu dàng, rạng rỡ với nụ cười tỏa nắng, mang hạnh phúc và bình yên đến với người thương."
+              "Cô gái dịu dàng, rạng rỡ với nụ cười tỏa nắng, mang hạnh phúc và
+              bình yên đến với người thương."
             </p>
           </div>
         </div>
-
       </div>
     </section>
   );
@@ -448,11 +568,16 @@ const LOVE_STORY = [
 ];
 function getTimelineIcon(icon: string) {
   switch (icon) {
-    case "coffee": return <CoffeeIcon />;
-    case "walk": return <WalkIcon />;
-    case "heart": return <HeartIcon />;
-    case "ring": return <RingIcon />;
-    default: return <HeartIcon />;
+    case "coffee":
+      return <CoffeeIcon />;
+    case "walk":
+      return <WalkIcon />;
+    case "heart":
+      return <HeartIcon />;
+    case "ring":
+      return <RingIcon />;
+    default:
+      return <HeartIcon />;
   }
 }
 // Câu chuyện tình yêu
@@ -461,7 +586,9 @@ function LoveStorySection() {
     <section className="wedding-section timeline-section" id="story">
       <div className="animate-on-scroll">
         <p className="section-title-script">Câu chuyện tình yêu</p>
-        <p className="section-subtitle">Hành trình đến bên nhau của chúng tôi</p>
+        <p className="section-subtitle">
+          Hành trình đến bên nhau của chúng tôi
+        </p>
       </div>
 
       <div className="timeline">
@@ -471,7 +598,9 @@ function LoveStorySection() {
             className={`timeline-item animate-on-scroll ${index % 2 === 0 ? "slide-left" : "slide-right"} delay-${(index + 1) * 200}`}
           >
             <div className="timeline-dot">{getTimelineIcon(item.icon)}</div>
-            <span className="timeline-date !text-base !font-elegant">{item.date}</span>
+            <span className="timeline-date !text-base !font-elegant">
+              {item.date}
+            </span>
             <h3 className="timeline-title !font-elegant">{item.title}</h3>
             <p className="timeline-text !font-elegant">{item.text}</p>
             <div className="timeline-image">
@@ -497,12 +626,20 @@ function EventSection() {
 
       <div className="flex flex-col gap-8 md:flex-row md:items-stretch justify-center max-w-5xl mx-auto px-4">
         {WEDDING.events.map((event, idx) => (
-          <div key={event.id} className="bg-white p-6 md:p-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#d4a5a5]/30 w-full md:w-1/2 flex flex-col items-center text-center animate-on-scroll relative" style={{ transitionDelay: `${(idx + 1) * 200}ms` }}>
+          <div
+            key={event.id}
+            className="bg-white p-6 md:p-8 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-[#d4a5a5]/30 w-full md:w-1/2 flex flex-col items-center text-center animate-on-scroll relative"
+            style={{ transitionDelay: `${(idx + 1) * 200}ms` }}
+          >
             {/* Top accent line */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#f0d5d5] via-[#c9a96e] to-[#f0d5d5]"></div>
 
             <div className="w-14 h-14 rounded-full bg-[#f8e8e0] border border-[#d4a5a5]/30 flex flex-col items-center justify-center mt-2 mb-5 text-[#c48b8b]">
-              {idx === 0 ? <HeartIcon className="w-7 h-7" /> : <RingIcon className="w-7 h-7" />}
+              {idx === 0 ? (
+                <HeartIcon className="w-7 h-7" />
+              ) : (
+                <RingIcon className="w-7 h-7" />
+              )}
             </div>
 
             <h3 className="font-elegant text-[20px] font-semibold text-[#3a2a22] mb-6">
@@ -529,17 +666,18 @@ function EventSection() {
                 </p>
               </div>
 
-
               <div className="flex flex-col items-center justify-center mb-6">
                 <div className="flex items-center gap-2.5 mb-1.5">
                   <MapPinIcon className="w-5 h-5 text-[#c9956b] pulse-anim" />
-                  <p className="font-elegant text-[#3a2a22] font-medium text-[16px]">{event.venue}</p>
+                  <p className="font-elegant text-[#3a2a22] font-medium text-[16px]">
+                    {event.venue}
+                  </p>
                 </div>
-                <p className="font-elegant text-[#8a7a72] text-[15px] px-2 pb-8">{event.address}</p>
+                <p className="font-elegant text-[#8a7a72] text-[15px] px-2 pb-8">
+                  {event.address}
+                </p>
               </div>
             </div>
-
-
           </div>
         ))}
       </div>
@@ -551,22 +689,32 @@ function EventSection() {
           <span className="icon">♡</span>
           <span className="line" />
         </div>
-        <p className="section-subtitle" style={{ marginBottom: 16 }}>Đếm ngược đến ngày trọng đại</p>
+        <p className="section-subtitle" style={{ marginBottom: 16 }}>
+          Đếm ngược đến ngày trọng đại
+        </p>
         <div className="event-countdown !font-elegant">
           <div className="countdown-item ">
-            <span className="countdown-number !font-elegant">{countdown.days}</span>
+            <span className="countdown-number !font-elegant">
+              {countdown.days}
+            </span>
             <span className="countdown-label !font-elegant">Ngày</span>
           </div>
           <div className="countdown-item">
-            <span className="countdown-number !font-elegant">{String(countdown.hours).padStart(2, "0")}</span>
+            <span className="countdown-number !font-elegant">
+              {String(countdown.hours).padStart(2, "0")}
+            </span>
             <span className="countdown-label !font-elegant">Giờ</span>
           </div>
           <div className="countdown-item">
-            <span className="countdown-number !font-elegant">{String(countdown.minutes).padStart(2, "0")}</span>
+            <span className="countdown-number !font-elegant">
+              {String(countdown.minutes).padStart(2, "0")}
+            </span>
             <span className="countdown-label !font-elegant">Phút</span>
           </div>
           <div className="countdown-item">
-            <span className="countdown-number !font-elegant">{String(countdown.seconds).padStart(2, "0")}</span>
+            <span className="countdown-number !font-elegant">
+              {String(countdown.seconds).padStart(2, "0")}
+            </span>
             <span className="countdown-label !font-elegant">Giây</span>
           </div>
         </div>
@@ -583,7 +731,11 @@ function MessageSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="wedding-section message-section" id="message" ref={sectionRef}>
+    <section
+      className="wedding-section message-section"
+      id="message"
+      ref={sectionRef}
+    >
       <div className="animate-on-scroll">
         <p className="section-title-script">Lời nhắn gửi</p>
       </div>
@@ -623,7 +775,10 @@ function GallerySection() {
         el.scrollLeft = currentScroll;
 
         // Bounce back and forth
-        if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1 && direction === 1) {
+        if (
+          el.scrollLeft >= el.scrollWidth - el.clientWidth - 1 &&
+          direction === 1
+        ) {
           direction = -1;
         } else if (el.scrollLeft <= 0 && direction === -1) {
           direction = 1;
@@ -634,8 +789,14 @@ function GallerySection() {
 
     animId = requestAnimationFrame(scroll);
 
-    const pause = () => { paused = true; };
-    const resume = () => { setTimeout(() => { paused = false; }, 2000); };
+    const pause = () => {
+      paused = true;
+    };
+    const resume = () => {
+      setTimeout(() => {
+        paused = false;
+      }, 2000);
+    };
 
     el.addEventListener("touchstart", pause, { passive: true });
     el.addEventListener("touchend", resume, { passive: true });
@@ -655,7 +816,9 @@ function GallerySection() {
     <section className="wedding-section gallery-section" id="gallery">
       <div className="animate-on-scroll">
         <p className="section-title-script">Khoảnh Khắc Đẹp</p>
-        <p className="section-subtitle !font-elegant">Những khoảnh khắc ngọt ngào của chúng tôi</p>
+        <p className="section-subtitle !font-elegant">
+          Những khoảnh khắc ngọt ngào của chúng tôi
+        </p>
       </div>
 
       <div className="gallery-scroll" ref={scrollRef}>
@@ -685,8 +848,10 @@ function WishesSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [wishesList, setWishesList] = useState<Wish[]>([]);
 
-  const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfIDRaXmWeOOENsW0oQvkeRvMA1c7rsLAPWI6H85IpK3eL85w/formResponse";
-  const GOOGLE_CSV_URL = "https://docs.google.com/spreadsheets/d/1kJ_nMM9x_YUgAe8NQd4wMmW2MZ53B4N60fLDIC9_lKg/gviz/tq?tqx=out:csv";
+  const GOOGLE_FORM_URL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSfIDRaXmWeOOENsW0oQvkeRvMA1c7rsLAPWI6H85IpK3eL85w/formResponse";
+  const GOOGLE_CSV_URL =
+    "https://docs.google.com/spreadsheets/d/1kJ_nMM9x_YUgAe8NQd4wMmW2MZ53B4N60fLDIC9_lKg/gviz/tq?tqx=out:csv";
   const ENTRY_NAME = "entry.1073959576";
   const ENTRY_WISH = "entry.639698557";
 
@@ -776,10 +941,15 @@ function WishesSection() {
     <section className="wedding-section wishes-section" id="wishes">
       <div className="animate-on-scroll">
         <p className="section-title-script">Gửi lời chúc</p>
-        <p className="section-subtitle !font-elegant">Lời chúc tốt đẹp nhất dành cho đôi uyên ương</p>
+        <p className="section-subtitle !font-elegant">
+          Lời chúc tốt đẹp nhất dành cho đôi uyên ương
+        </p>
       </div>
 
-      <form className="wishes-form animate-on-scroll delay-200" onSubmit={handleSubmit}>
+      <form
+        className="wishes-form animate-on-scroll delay-200"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           className="wishes-input !font-elegant"
@@ -797,7 +967,11 @@ function WishesSection() {
           required
           disabled={isSubmitting}
         />
-        <button type="submit" className="wishes-button flex items-center !font-elegant justify-center gap-2" disabled={isSubmitting}>
+        <button
+          type="submit"
+          className="wishes-button flex items-center !font-elegant justify-center gap-2"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? (
             <>
               <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
@@ -816,7 +990,9 @@ function WishesSection() {
         {isFetching ? (
           <div className="flex flex-col items-center justify-center py-10 opacity-50">
             <div className="w-8 h-8 border-2 border-[#d4a5a5]/30 border-t-[#d4a5a5] rounded-full animate-spin mb-3"></div>
-            <p className="font-elegant italic text-sm text-[#8a7a72]">Đang tải lời chúc...</p>
+            <p className="font-elegant italic text-sm text-[#8a7a72]">
+              Đang tải lời chúc...
+            </p>
           </div>
         ) : wishesList.length > 0 ? (
           <div className="wishes-list">
@@ -825,15 +1001,9 @@ function WishesSection() {
             </p>
             {wishesList.map((item) => (
               <div key={item.id} className="wishes-card fade-in-up">
-                <p className="wish-name">
-                  {item.name}
-                </p>
-                <p className="wish-text">
-                  "{item.wish}"
-                </p>
-                <span className="wish-date">
-                  {item.date}
-                </span>
+                <p className="wish-name">{item.name}</p>
+                <p className="wish-text">"{item.wish}"</p>
+                <span className="wish-date">{item.date}</span>
               </div>
             ))}
           </div>
@@ -863,17 +1033,19 @@ function FooterSection() {
 
       <div className="animate-on-scroll delay-300">
         <p className="footer-message">
-          Sự hiện diện của bạn sẽ làm cho ngày trọng đại của chúng tôi thêm phần trọn vẹn và ý nghĩa.
-          Cảm ơn bạn đã luôn yêu thương và ủng hộ.
+          Sự hiện diện của bạn sẽ làm cho ngày trọng đại của chúng tôi thêm phần
+          trọn vẹn và ý nghĩa. Cảm ơn bạn đã luôn yêu thương và ủng hộ.
         </p>
       </div>
 
       <div className="animate-on-scroll delay-400">
-        <p className="footer-names">{WEDDING.groomName} &amp; {WEDDING.brideName}</p>
+        <div className="footer-names">
+          {WEDDING.groomName} &amp; {WEDDING.brideName}
+        </div>
       </div>
 
-      <div className="footer-bottom animate-on-scroll delay-500">
-        <p>♡ {WEDDING.dateDisplay} ♡</p>
+      <div className="footer-bottom animate-on-scroll font-elegant delay-500">
+        <p className="text-center !font-elegant">♡ {WEDDING.dateDisplay} ♡</p>
       </div>
     </section>
   );
@@ -894,7 +1066,10 @@ function FloatingMusicPlayer() {
             setIsPlaying(true);
           })
           .catch((err) => {
-            console.warn("Auto-play was prevented by the browser. Waiting for user interaction...", err);
+            console.warn(
+              "Auto-play was prevented by the browser. Waiting for user interaction...",
+              err,
+            );
           });
       }
     }
@@ -953,8 +1128,9 @@ function FloatingMusicPlayer() {
   return (
     <div
       onClick={togglePlay}
-      className={`floating-music-btn w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-[0_4px_16px_rgba(212,165,165,0.4)] cursor-pointer border-2 border-[#d4a5a5] transition-transform duration-300 ${isPlaying ? "animate-[spin_4s_linear_infinite]" : ""
-        }`}
+      className={`floating-music-btn w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-[0_4px_16px_rgba(212,165,165,0.4)] cursor-pointer border-2 border-[#d4a5a5] transition-transform duration-300 ${
+        isPlaying ? "animate-[spin_4s_linear_infinite]" : ""
+      }`}
     >
       <audio ref={audioRef} src="/audio/leduong.mp3" autoPlay loop />
       <span className="text-xl leading-none">🎵</span>
@@ -975,6 +1151,7 @@ export default function Home() {
   return (
     <main ref={containerRef}>
       <FloatingMusicPlayer />
+      <FloatingPetals />
       <HeroSection />
       <CoupleSection />
       <IntroductionSection />

@@ -428,7 +428,29 @@ main,
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--color-bg);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.65) contrast(1.1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(253, 248, 245, 0.1) 0%,
+      rgba(90, 74, 66, 0.35) 50%,
+      rgba(58, 42, 34, 0.7) 100%);
+  z-index: 1;
 }
 
 .hero-content {
@@ -444,7 +466,10 @@ main,
   font-size: 14px;
   letter-spacing: 6px;
   text-transform: uppercase;
-  color: var(--color-accent);
+  background: linear-gradient(to right, #e6c891, #fbf2e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 12px;
   font-weight: 600;
 }
@@ -452,28 +477,70 @@ main,
 .hero-title {
   font-family: var(--font-script);
   font-size: clamp(44px, 12vw, 84px);
-  color: var(--color-text-dark);
+  /* Slightly larger for better readability */
+  color: var(--color-white);
   line-height: 1.4;
+  /* Increased line-height for flourishes */
   margin-bottom: 8px;
+  background: linear-gradient(
+    -45deg,
+    #fbf2e9 0%,
+    #e6c891 25%,
+    #fbf2e9 50%,
+    #e6c891 75%,
+    #fbf2e9 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite, glowing 4s ease-in-out infinite;
   padding: 0 20px;
+  /* Crucial: padding for flourishes */
   overflow: visible;
+  /* Crucial: don't clip swashes */
 }
 
 .hero-ampersand {
   font-family: var(--font-script);
   font-size: clamp(32px, 8vw, 56px);
-  color: var(--color-primary);
+  background: linear-gradient(
+    -45deg,
+    #e6c891 0%,
+    #fbf2e9 25%,
+    #e6c891 50%,
+    #fbf2e9 75%,
+    #e6c891 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   display: block;
   margin: -4px 0;
+  animation: gradientShift 8s ease infinite;
+  text-shadow: 0 0 20px rgba(230, 200, 145, 0.4);
 }
 
 .hero-tagline {
   font-family: var(--font-elegant);
   font-size: 16px;
   font-style: italic;
-  color: var(--color-text-light);
+  background: linear-gradient(
+    -45deg,
+    #fbf2e9 0%,
+    #e6c891 25%,
+    #fbf2e9 50%,
+    #e6c891 75%,
+    #fbf2e9 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-top: 20px;
   letter-spacing: 1px;
+  animation: gradientShift 8s ease infinite;
 }
 
 .padding-hero {
@@ -483,11 +550,14 @@ main,
 .hero-date {
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--color-text);
+  background: linear-gradient(to right, #e6c891, #fbf2e9, #e6c891);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: 4px;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid rgba(212, 165, 165, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   font-weight: 500;
 }
 
@@ -499,12 +569,18 @@ main,
   z-index: 2;
   animation: float 2s ease-in-out infinite;
   cursor: pointer;
+  background: rgba(230, 200, 145, 0.15);
+  border: 1px solid rgba(230, 200, 145, 0.4);
+  border-radius: 50%;
+  padding: 12px;
+  backdrop-filter: blur(5px);
 }
 
 .scroll-indicator svg {
   width: 28px;
   height: 28px;
-  color: var(--color-text-light);
+  color: rgba(230, 200, 145, 0.9);
+  animation: glowing 2s ease-in-out infinite;
 }
 
 /* ============================================
