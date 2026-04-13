@@ -289,7 +289,6 @@ function HeroSection() {
         <h1 className="hero-title">{WEDDING.brideName}</h1>
         <p className="hero-tagline">&ldquo;Nơi tình yêu bắt đầu chương mới&rdquo;</p>
         <p className="hero-date !font-elegant">{WEDDING.dateDisplay}<br />({WEDDING.lunarDate})</p>
-
       </div>
 
       <div className="scroll-indicator" onClick={scrollDown}>
@@ -976,7 +975,6 @@ export default function Home() {
   return (
     <main ref={containerRef}>
       <FloatingMusicPlayer />
-      <FloatingPetals />
       <HeroSection />
       <CoupleSection />
       <IntroductionSection />
