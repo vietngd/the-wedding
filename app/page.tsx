@@ -394,21 +394,36 @@ function HeroSection() {
 function CoupleSection() {
   return (
     <section className="wedding-section couple-section" id="couple">
-      <div className="animate-on-scroll scale-in flex justify-center rounded-full">
-        <img
-          src={IMAGES.couple}
-          alt="Couple portrait"
-          className="object-cover min-w-[200px] h-[200px] rounded-full"
-        />
+      <div className="animate-on-scroll scale-in flex justify-center">
+        <div className="couple-portrait-bling">
+          <span className="couple-sparkle" aria-hidden="true">✦</span>
+          <span className="couple-sparkle" aria-hidden="true">✧</span>
+          <span className="couple-sparkle" aria-hidden="true">✦</span>
+          <span className="couple-sparkle" aria-hidden="true">✧</span>
+          <span className="couple-sparkle" aria-hidden="true">✦</span>
+          <span className="couple-sparkle" aria-hidden="true">✧</span>
+          {/* Border ngoài → khoảng trắng 4px → ring gradient + ảnh */}
+          <div className="relative z-[1] rounded-full border-2 border-[#d4af6a] bg-white p-[4px] shadow-[0_10px_36px_rgba(58,42,34,0.12),0_0_1px_rgba(201,169,110,0.5)]">
+            <div className="couple-gradient-ring-bling rounded-full p-2 shadow-[0_4px_20px_rgba(196,139,139,0.3)]">
+              <img
+                src={IMAGES.couple}
+                alt="Couple portrait"
+                width={200}
+                height={200}
+                className="relative z-[1] h-[200px] w-[200px] rounded-full object-cover ring-2 ring-white"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="animate-on-scroll delay-200">
+      <div className="animate-on-scroll delay-200 !mt-2">
         <p className="announcement !font-elegant">Hân hoan thông báo</p>
       </div>
 
       <div className="animate-on-scroll delay-300">
         <div className="couple-names-container">
-          <span className="couple-name">{WEDDING.groomName}</span>
+          <span className="couple-name">{WEDDING.groomName}</span>  
           <span className="couple-amp">&amp;</span>
           <span className="couple-name">{WEDDING.brideName}</span>
         </div>
