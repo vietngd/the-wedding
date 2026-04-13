@@ -870,11 +870,11 @@ function FooterSection() {
       </div>
 
       <div className="animate-on-scroll delay-400">
-        <div className="footer-names">{WEDDING.groomName} {" "} &amp; {" "} {WEDDING.brideName}</div>
+        <p className="footer-names">{WEDDING.groomName} &amp; {WEDDING.brideName}</p>
       </div>
 
-      <div className="footer-bottom animate-on-scroll font-elegant delay-500">
-        <p className="text-center !font-elegant">♡ {WEDDING.dateDisplay} ♡</p>
+      <div className="footer-bottom animate-on-scroll delay-500">
+        <p>♡ {WEDDING.dateDisplay} ♡</p>
       </div>
     </section>
   );
