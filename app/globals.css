@@ -1110,6 +1110,81 @@ main,
   box-shadow: 0 6px 24px rgba(212, 165, 165, 0.5);
 }
 
+/* Gift box + QR reveal (event section) */
+@keyframes gift-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg) translateZ(0);
+  }
+
+  18% {
+    transform: rotate(-7deg);
+  }
+
+  36% {
+    transform: rotate(7deg);
+  }
+
+  54% {
+    transform: rotate(-5deg);
+  }
+
+  72% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes confetti-fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.25);
+    opacity: 0;
+  }
+}
+
+@keyframes gift-qr-reveal-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.gift-wiggle {
+  animation: gift-wiggle 2.4s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.gift-wiggle:hover {
+  animation-duration: 0.55s;
+}
+
+.confetti-burst-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.confetti-piece {
+  position: absolute;
+  border-radius: 2px;
+  animation: confetti-fly 0.82s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.gift-qr-reveal {
+  animation: gift-qr-reveal-in 0.65s ease-out forwards;
+}
+
 .event-countdown {
   display: flex;
   justify-content: center;
@@ -1558,4 +1633,56 @@ main {
 .gallery-scroll {
   max-width: 100%;
   overflow-x: auto;
+}
+@keyframes goldShine {
+  0% {
+    transform: translateX(-120%) rotate(12deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(220%) rotate(12deg);
+    opacity: 0;
+  }
+}
+.landing-tagline {
+    font-family: var(--font-script);
+  font-size: clamp(44px, 12vw, 84px);
+  /* Slightly larger for better readability */
+  color: var(--color-white);
+  line-height: 1.4;
+  /* Increased line-height for flourishes */
+  margin-bottom: 8px;
+  background: linear-gradient(
+    120deg,
+    #b8895c 0%,
+    #e6c27a 25%,
+    #c48b8b 50%,
+    #e6c27a 75%,
+    #b8895c 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite, glowing 4s ease-in-out infinite;
+  padding: 0 20px;
+  /* Crucial: padding for flourishes */
+  overflow: visible;
+  /* Crucial: don't clip swashes */
+}
+/* ánh kim seal */
+@keyframes foil {
+  0% { transform: translateX(-120%) rotate(15deg); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateX(200%) rotate(15deg); opacity: 0; }
+}
+
+/* ánh chạy */
+@keyframes goldShine {
+  0% { transform: translateX(-120%) rotate(12deg); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateX(220%) rotate(12deg); opacity: 0; }
 }

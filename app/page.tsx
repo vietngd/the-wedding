@@ -1,6 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+  type KeyboardEvent,
+  type CSSProperties,
+  type ChangeEvent,
+} from "react";
 
 // ── Image paths ──
 const IMAGES = {
@@ -13,6 +22,8 @@ const IMAGES = {
   story5: "/images/wedding/wedding-1.jpg",
   story6: "/images/wedding/wedding-15.jpg",
   // story7: "/images/wedding/wedding-15.jpg",
+  qrChure: "/images/wedding/qr_chure.jpg",
+  qrCodau: "/images/wedding/qr_codau.jpg",
   gallery: [
     "/images/wedding/wedding-9.jpg",
     "/images/wedding/wedding-4.jpg",
@@ -50,7 +61,7 @@ const WEDDING = {
     },
     {
       id: "dai-le",
-      title: "Lễ Cưới",
+      title: "Lễ Thành Hôn",
       date: "10 . 05 . 2026",
       lunarDate: "Tức 24 tháng 3 Âm lịch",
       relativeDay: "Chủ Nhật",
@@ -59,6 +70,12 @@ const WEDDING = {
       address: "Thôn Phù Lưu, Xã Yên Phong, Tỉnh Bắc Ninh",
     },
   ],
+  venueLocation: {
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=Th%C3%B4n+Ph%C3%B9+L%C6%B0u%2C+X%C3%A3+Y%C3%AAn+Phong%2C+T%E1%BB%89nh+B%E1%BA%AFc+Ninh&z=15&output=embed",
+    mapsOpenUrl:
+      "https://www.google.com/maps/search/?api=1&query=Th%C3%B4n+Ph%C3%B9+L%C6%B0u%2C+X%C3%A3+Y%C3%AAn+Phong%2C+T%E1%BB%89nh+B%E1%BA%AFc+Ninh",
+  },
 };
 
 // ── SVG Icons as components ──
@@ -357,7 +374,13 @@ function useScrollAnimation() {
 // ═══════════════════════════════════════════
 
 // ── 1. Hero Section ──
-function HeroSection() {
+function HeroSection({
+  guestName,
+  partnerName,
+}: {
+  guestName: string;
+  partnerName: string;
+}) {
   const scrollDown = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
@@ -390,18 +413,168 @@ function HeroSection() {
   );
 }
 
+
+
+type LandingScreenProps = {
+  onStart: (guest: string, partner: string) => void;
+  initialGuest?: string;
+  initialPartner?: string;
+};
+
+
+function LandingScreen({
+  onStart,
+  initialGuest = DEFAULT_GUEST_NAME,
+  initialPartner = DEFAULT_PARTNER_NAME,
+}: LandingScreenProps) {
+  const [guest, setGuest] = useState(initialGuest);
+  const [partner, setPartner] = useState(initialPartner);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isEnvelopeAnimated, setIsEnvelopeAnimated] = useState(false);
+  const closeTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+    const handleStart = () => {
+    if (isClosing) return;
+    setIsClosing(true);
+    setIsEnvelopeAnimated(true);
+
+    const finalGuest = guest.trim() || DEFAULT_GUEST_NAME;
+    const finalPartner = partner.trim() || DEFAULT_PARTNER_NAME;
+
+    closeTimerRef.current = window.setTimeout(() => {
+      onStart(finalGuest, finalPartner);
+    }, 300);
+  };
+
+
+  return (
+    <div
+      className={`fixed inset-0 z-[60] flex items-center justify-center overflow-hidden px-4 transition-all duration-500 ease-out ${
+        isClosing
+          ? "opacity-0 scale-95 pointer-events-none"
+          : "opacity-100 scale-100"
+      }`}
+    >
+      {/* Background */}
+      <div className="absolute inset-0 bg-[#f7f3ee]" />
+
+      {/* Glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-[20%] left-[25%] w-[280px] h-[280px] bg-[#f5d97a]/30 blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[20%] w-[240px] h-[240px] bg-[#ffd1dc]/30 blur-[100px]" />
+      </div>
+
+      {/* Content */}
+      <div className="relative flex flex-col items-center text-center">
+        {/* Title */}
+        <p className="text-[12px] font-elegant tracking-[0.35em] text-[#9c8f87] uppercase">
+          Trân trọng kính mời
+        </p>
+        <div className="mt-8 !text-[60px] space-y-3 opacity-70 landing-tagline">
+          Bạn và Người thương
+        </div>
+
+        {/* Envelope */}
+       <div
+          className="mt-10 relative w-[240px] h-[160px] group cursor-pointer transition-all duration-[1100ms] ease-[cubic-bezier(0.22,0.61,0.36,1)]"
+        style={
+            isEnvelopeAnimated
+              ? {
+                  transform: "translate(-180%, -20%) rotate(-360deg) scale(0.92)",
+                  opacity: 0,
+                }
+              : undefined
+          }
+          onClick={handleStart}
+        >
+          {/* Shadow */}
+          <div className="absolute inset-0 translate-y-4 blur-xl opacity-30 bg-black rounded-xl" />
+
+          {/* Body */}
+          <div className="absolute inset-0 rounded-xl bg-[#f4efe8] border border-[#e5d8c8] shadow-md" />
+
+          {/* Flap */}
+          <div
+            className="
+              absolute top-0 left-0 w-full h-[50%]
+              origin-top
+              bg-[#efe6db]
+              z-20
+              transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+              group-hover:-rotate-x-[160deg]
+            "
+            style={{
+              clipPath: "polygon(0 0, 100% 0, 50% 100%)",
+            }}
+          />
+
+          {/* Seal */}
+          <div
+            className="
+              absolute top-[45%] left-1/2 -translate-x-1/2 z-30
+              w-[36px] h-[36px] rounded-full
+              bg-gradient-to-br from-[#e6c27a] via-[#d4a373] to-[#b8895c]
+              shadow-md flex items-center justify-center
+              text-white text-[14px]
+              transition duration-500
+              group-hover:scale-110
+              overflow-hidden
+            "
+          >
+            囍
+            <div className="absolute inset-0 bg-white/40 blur-md opacity-0 group-hover:opacity-100 group-hover:animate-[foil_1.5s_ease]" />
+          </div>
+        </div>
+
+        {/* Date */}
+        <p className="!mt-5 text-[14px] text-[#8c7b70] tracking-widest font-elegant">
+          10.05.2026
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ...existing code...
+
+// ...existing code...
+
+// ...existing code...
+const DEFAULT_GUEST_NAME = "Bạn";
+const DEFAULT_PARTNER_NAME = "Người thương";
+
 // ── 2. Couple Names Section ──
 function CoupleSection() {
   return (
     <section className="wedding-section couple-section" id="couple">
       <div className="animate-on-scroll scale-in flex justify-center">
         <div className="couple-portrait-bling">
-          <span className="couple-sparkle" aria-hidden="true">✦</span>
-          <span className="couple-sparkle" aria-hidden="true">✧</span>
-          <span className="couple-sparkle" aria-hidden="true">✦</span>
-          <span className="couple-sparkle" aria-hidden="true">✧</span>
-          <span className="couple-sparkle" aria-hidden="true">✦</span>
-          <span className="couple-sparkle" aria-hidden="true">✧</span>
+          <span className="couple-sparkle" aria-hidden="true">
+            ✦
+          </span>
+          <span className="couple-sparkle" aria-hidden="true">
+            ✧
+          </span>
+          <span className="couple-sparkle" aria-hidden="true">
+            ✦
+          </span>
+          <span className="couple-sparkle" aria-hidden="true">
+            ✧
+          </span>
+          <span className="couple-sparkle" aria-hidden="true">
+            ✦
+          </span>
+          <span className="couple-sparkle" aria-hidden="true">
+            ✧
+          </span>
           {/* Border ngoài → khoảng trắng 4px → ring gradient + ảnh */}
           <div className="relative z-[1] rounded-full border-2 border-[#d4af6a] bg-white p-[4px] shadow-[0_10px_36px_rgba(58,42,34,0.12),0_0_1px_rgba(201,169,110,0.5)]">
             <div className="couple-gradient-ring-bling rounded-full p-2 shadow-[0_4px_20px_rgba(196,139,139,0.3)]">
@@ -423,7 +596,7 @@ function CoupleSection() {
 
       <div className="animate-on-scroll delay-300">
         <div className="couple-names-container">
-          <span className="couple-name">{WEDDING.groomName}</span>  
+          <span className="couple-name">{WEDDING.groomName}</span>
           <span className="couple-amp">&amp;</span>
           <span className="couple-name">{WEDDING.brideName}</span>
         </div>
@@ -625,6 +798,297 @@ function LoveStorySection() {
         ))}
       </div>
     </section>
+  );
+}
+
+type ConfettiPieceSpec = {
+  id: number;
+  dx: string;
+  dy: string;
+  rot: string;
+  color: string;
+  size: number;
+  delay: number;
+};
+
+const CONFETTI_PALETTE = [
+  "#d4a5a5",
+  "#c9a96e",
+  "#c9956b",
+  "#fdf8f5",
+  "#3a2a22",
+  "#f8e8e0",
+];
+
+const buildConfettiSpecs = (): ConfettiPieceSpec[] => {
+  const specs: ConfettiPieceSpec[] = [];
+  const n = 18;
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 * i) / n + Math.random() * 0.35;
+    const dist = 64 + Math.random() * 72;
+    specs.push({
+      id: i,
+      dx: `${Math.cos(angle) * dist}px`,
+      dy: `${Math.sin(angle) * dist}px`,
+      rot: `${420 + Math.random() * 420}deg`,
+      color: CONFETTI_PALETTE[i % CONFETTI_PALETTE.length],
+      size: 5 + Math.random() * 8,
+      delay: Math.random() * 0.08,
+    });
+  }
+  return specs;
+};
+
+function GiftQrSurprise() {
+  const [opened, setOpened] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const confetti = useMemo(() => buildConfettiSpecs(), []);
+
+  const handleOpenGift = useCallback(() => {
+    if (opened) return;
+    setShowConfetti(true);
+    setOpened(true);
+    window.setTimeout(() => setShowConfetti(false), 880);
+  }, [opened]);
+
+  const handleGiftKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleOpenGift();
+      }
+    },
+    [handleOpenGift],
+  );
+
+  return (
+    <div className="relative flex w-full flex-col items-center py-2">
+      <div className="relative mx-auto flex min-h-[268px] w-full max-w-[320px] items-center justify-center">
+        {showConfetti ? (
+          <div className="confetti-burst-layer" aria-hidden="true">
+            {confetti.map((c) => (
+              <span
+                key={c.id}
+                className="confetti-piece"
+                style={
+                  {
+                    width: c.size,
+                    height: Math.max(4, c.size * 0.55),
+                    backgroundColor: c.color,
+                    left: "50%",
+                    top: "45%",
+                    marginLeft: -c.size / 2,
+                    marginTop: -(c.size * 0.28),
+                    "--dx": c.dx,
+                    "--dy": c.dy,
+                    "--rot": c.rot,
+                    animationDelay: `${c.delay}s`,
+                  } as CSSProperties
+                }
+              />
+            ))}
+          </div>
+        ) : null}
+
+        {!opened ? (
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={handleOpenGift}
+            onKeyDown={handleGiftKeyDown}
+            className="group gift-wiggle relative flex flex-col items-center cursor-pointer select-none"
+          >
+            <p className="font-elegant mb-2 text-[13px] text-[#9c8f87]">
+              Một chút lộc nhỏ gửi bạn
+            </p>
+            <p className="font-elegant mb-5 text-[15px] text-[#c9a96e]">
+              Chạm để mở
+            </p>
+
+            <div className="relative w-[8.5rem] h-[13rem]">
+              {/* Shadow */}
+              <div className="absolute inset-0 translate-y-2 blur-xl opacity-30 bg-black rounded-3xl" />
+
+              {/* Bao lì xì */}
+              <div className="relative inset-0 h-full w-full rounded-2xl bg-[#c62828] shadow-[0_12px_25px_rgba(0,0,0,0.25)] overflow-hidden">
+                {/* Texture giấy */}
+                <div className="absolute inset-0 opacity-[0.12] bg-[radial-gradient(circle,_#ffffff_1px,_transparent_1px)] [background-size:6px_6px]" />
+
+                {/* Viền gold foil */}
+                <div
+                  className="
+               absolute inset-0 rounded-2xl
+               border border-[#e6c27a]
+               shadow-[0_0_6px_rgba(230,194,122,0.4)]
+             "
+                />
+
+                {/* Nắp */}
+                <div
+                  className="
+               absolute top-0 left-0 w-full h-[32%]
+               origin-top
+               bg-[#b71c1c]
+               rounded-t-2xl
+               shadow-[inset_0_-2px_6px_rgba(0,0,0,0.25)]
+               transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+               group-hover:-rotate-x-[55deg]
+             "
+                />
+
+                {/* Seal vàng */}
+                <div
+                  className="
+               absolute top-[38%] left-1/2 -translate-x-1/2 z-20
+               w-[2.6rem] h-[2.6rem]
+               rounded-full
+               bg-gradient-to-br from-[#fff6cc] via-[#f5d97a] to-[#c9a96e]
+               shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_6px_12px_rgba(0,0,0,0.35)]
+               flex items-center justify-center
+               text-[15px] font-bold text-[#8c6b1f]
+             "
+                >
+                  囍
+                </div>
+
+                {/* Shine chạy qua (ánh kim) */}
+                <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
+                  <div
+                    className="
+                 absolute -left-1/2 top-0 h-full w-1/3
+                 rotate-12
+                 bg-gradient-to-r from-transparent via-white/50 to-transparent
+                 blur-md
+                 opacity-0
+                 group-hover:opacity-100
+                 group-hover:animate-[goldShine_1.6s_ease_forwards]
+               "
+                  />
+                </div>
+
+                {/* Glow nhẹ quanh seal */}
+                <div
+                  className="
+               absolute top-[38%] left-1/2 -translate-x-1/2
+               w-[3.5rem] h-[3.5rem]
+               rounded-full
+               blur-xl
+               opacity-0
+               bg-[#f5d97a]
+               group-hover:opacity-40
+               transition duration-500
+             "
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="flex gap-6 items-center justify-center">
+            <div className="gift-qr-reveal relative z-10 flex w-full flex-col items-center !p-4">
+              <p className="font-elegant mt-1 !mb-5 text-center text-[14px] text-[#8a7a72]">
+                Cảm ơn bạn rất nhiều
+              </p>
+              <div className="mt-5 rounded-2xl border-4 border-white bg-white p-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)]">
+                <img
+                  src={IMAGES.qrChure}
+                  alt={`Mã QR mừng cưới ${WEDDING.groomName} và ${WEDDING.brideName}`}
+                  width={120}
+                  height={120}
+                  className="h-auto w-[120px] max-w-full object-contain sm:w-[220px]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+       
+            </div>
+
+            <div className="gift-qr-reveal relative z-10 flex w-full flex-col items-center !p-4">
+              <p className="font-elegant mt-1 !mb-5 text-center text-[14px] text-[#8a7a72]">
+                Cảm ơn bạn rất nhiều
+              </p>
+              <div className="mt-5 rounded-2xl border-4 border-white bg-white p-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)]">
+                <img
+                  src={IMAGES.qrCodau}
+                  alt={`Mã QR mừng cưới ${WEDDING.groomName} và ${WEDDING.brideName}`}
+                  width={120}
+                  height={120}
+                  className="h-auto w-[120px] max-w-full object-contain sm:w-[220px]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+          
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function VenueMapAndGiftSection() {
+  const primary = WEDDING.events[0];
+
+  return (
+    <div className="mx-auto mt-10 w-full max-w-[460px] px-4 animate-on-scroll delay-200 md:mt-12">
+      <div className="ornament-divider mb-6">
+        <span className="line" />
+        <span className="icon">📍</span>
+        <span className="line" />
+      </div>
+      <p className="section-title-script text-center !text-[clamp(1.45rem,4.8vw,1.85rem)]">
+        Địa điểm
+      </p>
+      <p className="section-subtitle mb-8 text-center">
+        Xem bản đồ và gửi lời chúc
+      </p>
+
+      <div className="overflow-hidden rounded-2xl !bg-gradient-to-b !from-[#fff9f7] !to-white shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
+        <div className="p-5 md:p-6  !mt-4">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <div className="flex justify-center">
+              <MapPinIcon className="h-7 w-7 text-[#c9956b]" />
+            </div>
+            <div className="min-w-0 flex flex-col items-center justify-center gap-3 pb-2">
+              <p className="font-elegant text-[17px] font-semibold text-[#3a2a22]">
+                {primary.venue}
+              </p>
+              <p className="font-elegant text-[15px] leading-relaxed text-[#5c4a40]">
+                {primary.address}
+              </p>
+
+              <a
+                href={WEDDING.venueLocation.mapsOpenUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="map-button mt-4 inline-flex !font-elegant text-[14px] text-[#8a7a72] w-[300px] flex justify-center items-center w-auto"
+                aria-label="Mở địa điểm trong Google Maps"
+              >
+                <MapPinIcon className="h-4 w-4" />
+                Mở Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className=" p-4 md:p-5 !h-[250px] sm:!h-[350px]">
+          <div className="relative mx-auto aspect-[4/3] rounded-xl">
+            <iframe
+              title="Bản đồ địa điểm lễ cưới"
+              src={WEDDING.venueLocation.mapEmbedUrl}
+              className="absolute inset-0 h-[200px] w-[300px] sm:h-[300px] sm:w-[500px] border-0 !mt-5 !mx-auto !rounded-xl"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+        </div>
+
+        <div className=" p-4 md:p-5 !mb-5">
+          <GiftQrSurprise />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -1162,12 +1626,47 @@ function FloatingMusicPlayer() {
 // ═══════════════════════════════════════════
 export default function Home() {
   const containerRef = useScrollAnimation();
+  const [showLanding, setShowLanding] = useState(true);
+  const [recipientName, setRecipientName] = useState(DEFAULT_GUEST_NAME);
+  const [partnerName, setPartnerName] = useState(DEFAULT_PARTNER_NAME);
+
+  useEffect(() => {
+    const stored = typeof window !== "undefined" ? localStorage.getItem("wedding_guest_names") : null;
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored) as { guest: string; partner: string };
+        setRecipientName(parsed.guest || DEFAULT_GUEST_NAME);
+        setPartnerName(parsed.partner || DEFAULT_PARTNER_NAME);
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
+
+  const handleStart = useCallback((guest: string, partner: string) => {
+    const finalGuest = guest || DEFAULT_GUEST_NAME;
+    const finalPartner = partner || DEFAULT_PARTNER_NAME;
+    setRecipientName(finalGuest);
+    setPartnerName(finalPartner);
+    localStorage.setItem(
+      "wedding_guest_names",
+      JSON.stringify({ guest: finalGuest, partner: finalPartner }),
+    );
+    setShowLanding(false);
+  }, []);
 
   return (
     <main ref={containerRef}>
+      {showLanding && (
+        <LandingScreen
+          initialGuest={recipientName}
+          initialPartner={partnerName}
+          onStart={handleStart}
+        />
+      )}
       <FloatingMusicPlayer />
       <FloatingPetals />
-      <HeroSection />
+      <HeroSection guestName={recipientName} partnerName={partnerName} />
       <CoupleSection />
       <IntroductionSection />
       <LoveStorySection />
@@ -1175,6 +1674,7 @@ export default function Home() {
       <MessageSection />
       <GallerySection />
       <WishesSection />
+      <VenueMapAndGiftSection />
       <FooterSection />
     </main>
   );
