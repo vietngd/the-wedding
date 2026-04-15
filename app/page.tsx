@@ -907,7 +907,7 @@ function GiftQrSurprise() {
 
             <div className="relative w-[8.5rem] h-[13rem]">
               {/* Shadow */}
-              <div className="absolute inset-0 translate-y-2 blur-xl opacity-30 bg-black rounded-3xl" />
+              <div className="absolute inset-0 translate-y-2 blur-xl opacity-30 rounded-3xl" />
 
               {/* Bao lì xì */}
               <div className="relative inset-0 h-full w-full rounded-2xl bg-[#c62828] shadow-[0_12px_25px_rgba(0,0,0,0.25)] overflow-hidden">
