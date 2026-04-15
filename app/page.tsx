@@ -458,16 +458,20 @@ function LandingScreen({
   return (
     <div
       className={`fixed inset-0 z-[60] flex items-center justify-center overflow-hidden px-4 transition-all duration-500 ease-out ${
-        isClosing
+         isClosing
           ? "opacity-0 scale-95 pointer-events-none"
           : "opacity-100 scale-100"
       }`}
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-[#f7f3ee]" />
+         <div className={`absolute inset-0 transition-opacity duration-500 ease-out ${
+        isClosing ? "opacity-0" : "opacity-100"
+      } bg-[#f7f3ee]`} />
 
       {/* Glow */}
-      <div className="pointer-events-none absolute inset-0">
+     <div className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ease-out ${
+        isClosing ? "opacity-0" : "opacity-100"
+      }`}>
         <div className="absolute top-[20%] left-[25%] w-[280px] h-[280px] bg-[#f5d97a]/30 blur-[120px]" />
         <div className="absolute bottom-[10%] right-[20%] w-[240px] h-[240px] bg-[#ffd1dc]/30 blur-[100px]" />
       </div>
