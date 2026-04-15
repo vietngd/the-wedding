@@ -483,9 +483,10 @@ function LandingScreen({
         </div>
 
         {/* Envelope */}
-       <div
+               {/* Envelope */}
+        <div
           className="mt-10 relative w-[240px] h-[160px] group cursor-pointer transition-all duration-[1100ms] ease-[cubic-bezier(0.22,0.61,0.36,1)]"
-        style={
+          style={
             isEnvelopeAnimated
               ? {
                   transform: "translate(-180%, -20%) rotate(-360deg) scale(0.92)",
@@ -495,42 +496,81 @@ function LandingScreen({
           }
           onClick={handleStart}
         >
-          {/* Shadow */}
-          <div className="absolute inset-0 translate-y-4 opacity-30 rounded-xl" />
+          {/* Shadow 3D */}
+          <div className="absolute inset-0 translate-y-4 blur-2xl opacity-30 rounded-2xl bg-black group-hover:translate-y-5 transition-transform duration-500" />
 
           {/* Body */}
-          <div className="absolute inset-0 rounded-xl border border-[#e5d8c8] shadow-md" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#fdfaf7] to-[#f4efe8] border-2 border-[#e5d8c8] shadow-[0_10px_30px_rgba(58,42,34,0.15)] group-hover:shadow-[0_16px_40px_rgba(58,42,34,0.2)] transition-shadow duration-500" />
+
+          {/* Texture pattern */}
+          <div className="absolute inset-0 rounded-2xl opacity-[0.05] bg-[linear-gradient(45deg,_#ffffff_25%,_transparent_25%,_transparent_50%,_#ffffff_50%,_#ffffff_75%,_transparent_75%,_transparent)] [background-size:20px_20px]" />
+
+          {/* Gold foil border */}
+          <div className="absolute inset-0 rounded-2xl border border-[#d4a373]/30 shadow-[inset_0_0_8px_rgba(212,163,115,0.2)]" />
 
           {/* Flap */}
           <div
             className="
               absolute top-0 left-0 w-full h-[50%]
               origin-top
-              bg-[#efe6db]
+              bg-gradient-to-b from-[#efe6db] to-[#e8ddd2]
               z-20
+              rounded-t-2xl
               transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
-              group-hover:-rotate-x-[160deg]
+              group-hover:-rotate-x-[75deg]
+              shadow-[inset_0_-2px_6px_rgba(0,0,0,0.08)]
             "
             style={{
               clipPath: "polygon(0 0, 100% 0, 50% 100%)",
             }}
           />
 
-          {/* Seal */}
+          {/* Reflection trên flap */}
+          <div
+            className="absolute top-0 left-0 w-full h-[50%] rounded-t-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-gradient-to-b from-white/30 to-transparent z-[15]"
+            style={{
+              clipPath: "polygon(0 0, 100% 0, 50% 100%)",
+            }}
+          />
+
+          {/* Seal vàng to hơn */}
+          {/* Seal vàng to hơn */}
           <div
             className="
-              absolute top-[45%] left-1/2 -translate-x-1/2 z-30
-              w-[36px] h-[36px] rounded-full
-              bg-gradient-to-br from-[#e6c27a] via-[#d4a373] to-[#b8895c]
-              shadow-md flex items-center justify-center
-              text-white text-[14px]
-              transition duration-500
-              group-hover:scale-110
+              absolute top-[42%] left-1/2 -translate-x-1/2 z-30
+              w-[48px] h-[48px] rounded-full
+              bg-gradient-to-br from-[#fef9e7] via-[#fde68a] to-[#d4a76a]
+              shadow-[inset_0_3px_8px_rgba(255,253,208,0.95),inset_-3px_-3px_8px_rgba(139,108,20,0.3),0_12px_28px_rgba(212,167,106,0.5)]
+              flex items-center justify-center
+              text-[24px] font-bold text-[#8b6914]
+              transition-all duration-500
+              group-hover:scale-130
+              group-hover:shadow-[inset_0_4px_10px_rgba(255,253,208,1),inset_-4px_-4px_10px_rgba(139,108,20,0.2),0_16px_36px_rgba(212,167,106,0.6)]
               overflow-hidden
             "
           >
             囍
-            <div className="absolute inset-0 bg-white/40 blur-md opacity-0 group-hover:opacity-100 group-hover:animate-[foil_1.5s_ease]" />
+            {/* Shine effect trên seal */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Sparkle animation */}
+            <div className="absolute inset-0 rounded-full animate-[pulse_2s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-60" />
+          </div>
+
+          {/* Glow around seal - much stronger */}
+          <div className="pointer-events-none absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full blur-2xl opacity-0 bg-gradient-to-br from-[#fff9e6] via-[#fde68a] to-transparent group-hover:opacity-80 transition-opacity duration-700 animate-[glow_2s_ease-in-out_infinite]" />
+
+          {/* Extra shimmer layer */}
+          <div className="pointer-events-none absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="absolute inset-0 rounded-full bg-radial-gradient from-white/80 to-transparent animate-[spin_6s_linear_infinite]" />
+          </div>
+
+          {/* Decorative lines on envelope */}
+          <div className="absolute top-6 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-40 transition-opacity duration-500">
+            <div className="w-[70%] h-px bg-gradient-to-r from-transparent via-[#d4a373] to-transparent" />
+          </div>
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-40 transition-opacity duration-500">
+            <div className="w-[70%] h-px bg-gradient-to-r from-transparent via-[#d4a373] to-transparent" />
           </div>
         </div>
 
@@ -615,10 +655,10 @@ function CoupleSection() {
           đến chung vui trong ngày lễ trọng đại của chúng tôi
           <br />
         </div>
-        <div className="couple-description inline-block px-8 pt-3 pb-1 mt-5 rounded-3xl min-w-[220px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
+        <div className="couple-description text-base inline-block px-8 pt-3 pb-1 mt-5 rounded-3xl min-w-[220px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
           Lúc 17h00 <br />
           09-05-2026 <br />
-          <span className="text-[14px] font-medium italic opacity-85">
+          <span className="text-base font-medium italic opacity-85">
             (Tức 23 tháng 3 Âm lịch)
           </span>
         </div>
