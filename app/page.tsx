@@ -899,9 +899,9 @@ function GiftQrSurprise() {
             className="group gift-wiggle relative flex flex-col items-center cursor-pointer select-none"
           >
             <p className="font-elegant mb-2 text-[13px] text-[#9c8f87]">
-              Một chút lộc nhỏ gửi bạn
+              Một chút ân tình bạn muốn gửi đến 2 vợ chồng
             </p>
-            <p className="font-elegant mb-5 text-[15px] text-[#c9a96e]">
+            <p className="font-elegant mb-5 text-[15px] text-[#c9a96e] !pt-2">
               Chạm để mở
             </p>
 
