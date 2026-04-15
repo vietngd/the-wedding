@@ -466,7 +466,11 @@ function LandingScreen({
       {/* Background */}
       <div className="absolute inset-0 bg-[#f7f3ee]" />
 
-    
+      {/* Glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-[20%] left-[25%] w-[280px] h-[280px] bg-[#f5d97a]/30 blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[20%] w-[240px] h-[240px] bg-[#ffd1dc]/30 blur-[100px]" />
+      </div>
 
       {/* Content */}
       <div className="relative flex flex-col items-center text-center">
@@ -492,10 +496,10 @@ function LandingScreen({
           onClick={handleStart}
         >
           {/* Shadow */}
-          <div className="absolute inset-0 translate-y-4 blur-xl opacity-30 bg-black rounded-xl" />
+          <div className="absolute inset-0 translate-y-4 opacity-30 rounded-xl" />
 
           {/* Body */}
-          <div className="absolute inset-0 rounded-xl bg-[#f4efe8] border border-[#e5d8c8] shadow-md" />
+          <div className="absolute inset-0 rounded-xl border border-[#e5d8c8] shadow-md" />
 
           {/* Flap */}
           <div
