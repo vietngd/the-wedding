@@ -147,6 +147,195 @@ function CalendarIcon({ className = "" }: { className?: string }) {
   );
 }
 
+const WEDDING_CALENDAR_WEEKDAYS = [
+  "T2",
+  "T3",
+  "T4",
+  "T5",
+  "T6",
+  "T7",
+  "CN",
+] as const;
+
+const WEDDING_CALENDAR_YEAR = 2026;
+const WEDDING_CALENDAR_MONTH_INDEX = 4; // May (0-based)
+const WEDDING_CALENDAR_HIGHLIGHT_DAYS: ReadonlySet<number> = new Set([9, 10]);
+
+/** Static May 2026 grid; highlights 9–10 only (view-only, matches invitation art). */
+function WeddingDateCalendarView() {
+  const first = new Date(
+    WEDDING_CALENDAR_YEAR,
+    WEDDING_CALENDAR_MONTH_INDEX,
+    1,
+  );
+
+  const leadingBlanks = (first.getDay() + 6) % 7;
+
+  const daysInMonth = new Date(
+    WEDDING_CALENDAR_YEAR,
+    WEDDING_CALENDAR_MONTH_INDEX + 1,
+    0,
+  ).getDate();
+
+  const cells: (number | null)[] = [
+    ...Array(leadingBlanks).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ];
+
+  return (
+    <div className="relative w-full max-w-[380px] sm:max-w-[440px] rounded-xl border border-[#c4a88a]/30  !px-3 sm:px-3 pb-3 sm:pb-4 pt-4 sm:pt-5 shadow-[0_6px_20px_rgba(92,64,51,0.08)] !mt-6">
+      {/* texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.1]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Title */}
+      <p className="text-center text-[#5c4033] leading-none !font-script !text-[60px] !pb-0 !mb-2 sm:!mb-6 !mt-6">
+        May
+      </p>
+      <p className="text-center text-[20px] tracking-widest !mb-4 sm:!mb-6 font-elegant font-semibold ">
+        {WEDDING_CALENDAR_YEAR}
+      </p>
+
+      {/* Weekdays */}
+      <div className="grid grid-cols-7 text-sm sm:text-base !font-extrabold text-[#6b4f3e] font-elegant">
+        {WEDDING_CALENDAR_WEEKDAYS.map((d) => (
+          <div key={d} className="text-center">
+            {d}
+          </div>
+        ))}
+      </div>
+
+      {/* Days */}
+      <div className="mt-1 grid grid-cols-7 gap-y-[2px]">
+        {cells.map((day, index) => {
+          if (day === null) {
+            return <div key={`empty-${index}`} className="aspect-square" />;
+          }
+
+          const isHeart = WEDDING_CALENDAR_HIGHLIGHT_DAYS.has(day);
+          const label = String(day).padStart(2, "0");
+
+          return (
+            <div
+              key={`${day}-${index}`}
+              className="flex aspect-square items-center justify-center"
+            >
+              {isHeart ? (
+                <div className="relative flex items-center justify-center w-full h-full sm:w-[65%] sm:h-[65%]">
+                  {/* Heart */}
+                  <svg
+                    className="absolute inset-0 w-full h-full animate-[heartbeat_2.6s_ease-in-out_infinite]"
+                    viewBox="0 0 24 24"
+                  >
+                    <defs>
+                      {/* Gradient chính (hơi lệch sáng) */}
+                      <linearGradient
+                        id="heartGrad"
+                        x1="0"
+                        y1="0"
+                        x2="1"
+                        y2="1"
+                      >
+                        <stop offset="0%" stopColor="#ffb3ba" />
+                        <stop offset="40%" stopColor="#ff6f7d" />
+                        <stop offset="100%" stopColor="#c94b5f" />
+                      </linearGradient>
+
+                      {/* Highlight phía trên */}
+                      <linearGradient
+                        id="heartHighlight"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="0%"
+                          stopColor="#ffffff"
+                          stopOpacity="0.45"
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor="#ffffff"
+                          stopOpacity="0"
+                        />
+                      </linearGradient>
+
+                      {/* Shadow phía dưới */}
+                      <filter
+                        id="heartShadow"
+                        x="-50%"
+                        y="-50%"
+                        width="200%"
+                        height="200%"
+                      >
+                        <feDropShadow
+                          dx="0.5"
+                          dy="1.5"
+                          stdDeviation="1.2"
+                          floodColor="#a83245"
+                          floodOpacity="0.35"
+                        />
+                      </filter>
+                    </defs>
+
+                    {/* Base heart */}
+                    <path
+                      fill="url(#heartGrad)"
+                      filter="url(#heartShadow)"
+                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+       2 5.42 4.42 3 7.5 3
+       c1.74 0 3.41.81 4.5 2.09
+       C13.09 3.81 14.76 3 16.5 3
+       19.58 3 22 5.42 22 8.5
+       c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    />
+
+                    {/* Highlight overlay (tạo cảm giác nổi) */}
+                    <path
+                      fill="url(#heartHighlight)"
+                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+       2 5.42 4.42 3 7.5 3
+       c1.74 0 3.41.81 4.5 2.09
+       C13.09 3.81 14.76 3 16.5 3
+       19.58 3 22 5.42 22 8.5
+       c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    />
+                  </svg>
+
+                  {/* Number inside heart */}
+                  <span
+                    className="
+                  relative z-[1]
+                  text-[12px] sm:text-sm
+                  font-elegant
+                  !p-1
+                  font-medium
+                  text-white
+                  leading-none
+                  drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]
+                "
+                  >
+                    {label}
+                  </span>
+                </div>
+              ) : (
+                <span className="text-[12px] sm:text-sm font-medium text-[#5c4033] font-elegant">
+                  {label}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function ClockIcon({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -413,14 +602,11 @@ function HeroSection({
   );
 }
 
-
-
 type LandingScreenProps = {
   onStart: (guest: string, partner: string) => void;
   initialGuest?: string;
   initialPartner?: string;
 };
-
 
 function LandingScreen({
   onStart,
@@ -441,7 +627,7 @@ function LandingScreen({
     };
   }, []);
 
-    const handleStart = () => {
+  const handleStart = () => {
     if (isClosing) return;
     setIsClosing(true);
     setIsEnvelopeAnimated(true);
@@ -453,7 +639,6 @@ function LandingScreen({
       onStart(finalGuest, finalPartner);
     }, 300);
   };
-
 
   return (
     <div
@@ -483,13 +668,14 @@ function LandingScreen({
         </div>
 
         {/* Envelope */}
-               {/* Envelope */}
+        {/* Envelope */}
         <div
           className="mt-10 relative w-[240px] h-[160px] group cursor-pointer transition-all duration-[1100ms] ease-[cubic-bezier(0.22,0.61,0.36,1)]"
           style={
             isEnvelopeAnimated
               ? {
-                  transform: "translate(-180%, -20%) rotate(-360deg) scale(0.92)",
+                  transform:
+                    "translate(-180%, -20%) rotate(-360deg) scale(0.92)",
                   opacity: 0,
                 }
               : undefined
@@ -549,10 +735,8 @@ function LandingScreen({
               overflow-hidden
             "
           >
-            囍
-            {/* Shine effect trên seal */}
+            囍{/* Shine effect trên seal */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
             {/* Sparkle animation */}
             <div className="absolute inset-0 rounded-full animate-[pulse_2s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-60" />
           </div>
@@ -655,12 +839,15 @@ function CoupleSection() {
           đến chung vui trong ngày lễ trọng đại của chúng tôi
           <br />
         </div>
-        <div className="couple-description text-base inline-block px-8 pt-3 pb-1 mt-5 rounded-3xl min-w-[220px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
-          Lúc 17h00 <br />
-          09-05-2026 <br />
-          <span className="text-base font-medium italic opacity-85">
-            (Tức 23 tháng 3 Âm lịch)
-          </span>
+        <div className="mt-5 flex flex-col items-center gap-4">
+          <div className="couple-description text-base inline-block px-8 pt-3 pb-1 rounded-3xl min-w-[220px] bg-gradient-to-r from-[#f8e8e0] via-[#fdfbfb] to-[#f8e8e0] border border-[#d4a5a5]/40 text-[#c48b8b] font-semibold tracking-wide shadow-sm">
+            Lúc 17h00 <br />
+            09-05-2026 <br />
+            <span className="text-base font-medium italic opacity-85">
+              (Tức 23 tháng 3 Âm lịch)
+            </span>
+          </div>
+          <WeddingDateCalendarView />
         </div>
       </div>
     </section>
@@ -700,7 +887,7 @@ function IntroductionSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
 
-          <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
+          <div className="text-center bg-white/80 backdrop-blur-md !py-2 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
             <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">
               Chú rể
             </p>
@@ -740,7 +927,7 @@ function IntroductionSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
 
-          <div className="text-center bg-white/80 backdrop-blur-md pt-8 pb-6 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
+          <div className="text-center bg-white/80 backdrop-blur-md !py-2 px-8 rounded-3xl shadow-[0_8px_30px_rgba(212,165,165,0.25)] -mt-16 relative z-10 w-[85%] md:w-[90%] border border-white/60 group-hover:bg-white transition-colors duration-500">
             <p className="text-[#c48b8b] text-[13px] font-bold uppercase tracking-[0.2em] mb-2 !font-elegant">
               Cô dâu
             </p>
@@ -1039,7 +1226,6 @@ function GiftQrSurprise() {
                   decoding="async"
                 />
               </div>
-       
             </div>
 
             <div className="gift-qr-reveal relative z-10 flex w-full flex-col items-center !p-4">
@@ -1057,7 +1243,6 @@ function GiftQrSurprise() {
                   decoding="async"
                 />
               </div>
-          
             </div>
           </div>
         )}
@@ -1671,7 +1856,10 @@ export default function Home() {
   const [partnerName, setPartnerName] = useState(DEFAULT_PARTNER_NAME);
 
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? localStorage.getItem("wedding_guest_names") : null;
+    const stored =
+      typeof window !== "undefined"
+        ? localStorage.getItem("wedding_guest_names")
+        : null;
     if (stored) {
       try {
         const parsed = JSON.parse(stored) as { guest: string; partner: string };
