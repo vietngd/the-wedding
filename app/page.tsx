@@ -13,7 +13,7 @@ import {
 
 // ── Image paths ──
 const IMAGES = {
-  hero: "/images/wedding/wedding-2.jpg",
+  hero: "/images/wedding/wedding-24.jpg",
   couple: "/images/wedding/wedding-22.jpg",
   story1: "/images/wedding/wedding-3.jpg",
   story2: "/images/wedding/wedding-5.jpg",
