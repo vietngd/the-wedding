@@ -32,7 +32,7 @@ const IMAGES = {
     "/images/wedding/wedding-19.jpg",
     "/images/wedding/wedding-8.jpg",
     "/images/wedding/wedding-16.jpg",
-    "/images/wedding/wedding-7.jpg",
+    "/images/wedding/wedding-2.jpg",
     "/images/wedding/wedding-18.jpg",
     "/images/wedding/wedding-21.jpg",
     "/images/wedding/wedding-23.jpg",
