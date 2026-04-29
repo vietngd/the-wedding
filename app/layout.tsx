@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thiệp Cưới - Đức Việt & Thoa Nguyễn",
     description: "Hân hoan thông báo lễ cưới của Đức Việt & Thoa Nguyễn. Chúng tôi trân trọng kính mời bạn đến chung vui.",
-    images: ["/images/wedding/wedding-1.jpg"],
+    images: ["/images/wedding/wedding-24.jpg"],
   },
 };
 
