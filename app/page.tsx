@@ -183,7 +183,7 @@ function WeddingDateCalendarView() {
   ];
 
   return (
-    <div className="relative w-full max-w-[380px] sm:max-w-[440px] rounded-xl border border-[#c4a88a]/30  !px-3 sm:px-3 pb-3 sm:pb-4 pt-4 sm:pt-5 shadow-[0_6px_20px_rgba(92,64,51,0.08)] !mt-6">
+    <div className="relative w-full max-w-[380px] sm:!max-w-[440px] rounded-xl border border-[#c4a88a]/30  !px-3 sm:px-3 pb-3 sm:pb-4 pt-4 sm:pt-5 shadow-[0_6px_20px_rgba(92,64,51,0.08)] !mt-6">
       {/* texture */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.1]"
